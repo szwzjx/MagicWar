@@ -1,0 +1,2 @@
+# MagicWar
+A fascinating world.
