@@ -1,0 +1,27 @@
+<?php 
+use \Workerman\Worker;
+use \Workerman\WebServer;
+use \GatewayWorker\Gateway;
+use \GatewayWorker\BusinessWorker;
+use \Workerman\Autoloader;
+
+// 自动加载类
+require_once '../../Workerman/Autoloader.php';
+
+// WebServer
+$web = new WebServer("http://0.0.0.0:23234");
+// WebServer数量
+$web->count = 2;
+
+$http_worker->onMessage = function($connection, $data)
+{
+    // 向浏览器发送hello world
+    $connection->send('hello world');
+};
+
+// 如果不是在根目录启动，则运行runAll方法
+if(!defined('GLOBAL_START'))
+{
+    Worker::runAll();
+}
+
