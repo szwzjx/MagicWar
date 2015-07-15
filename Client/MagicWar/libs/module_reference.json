@@ -1648,6 +1648,28 @@
 			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/managers/impl/PopUpManagerImpl.ts",
 			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/core/IVisualElement.ts",
 			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/events/PopUpEvent.ts"
+		],
+		"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/ISocket.ts": [],
+		"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/HTML5WebSocket.ts": [
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/utils/Logger.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/ISocket.ts"
+		],
+		"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/NativeSocket.ts": [
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/utils/getDefinitionByName.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/ISocket.ts"
+		],
+		"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/WebSocket.ts": [
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/events/EventDispatcher.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/events/Event.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/events/IOErrorEvent.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/events/ProgressEvent.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/utils/Logger.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/utils/callLater.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/ISocket.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/context/MainContext.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/HTML5WebSocket.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/NativeSocket.ts",
+			"D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/egret/utils/ByteArray.ts"
 		]
 	},
 	"classNameToPath": {
@@ -2065,6 +2087,10 @@
 		"egret.gui.UIStage": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/core/UIStage.ts",
 		"egret.gui.PopUpManagerImpl": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/managers/impl/PopUpManagerImpl.ts",
 		"egret.gui.PopUpData": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/managers/impl/PopUpManagerImpl.ts",
-		"egret.gui.PopUpManager": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/managers/PopUpManager.ts"
+		"egret.gui.PopUpManager": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/gui/managers/PopUpManager.ts",
+		"egret.ISocket": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/ISocket.ts",
+		"egret.HTML5WebSocket": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/HTML5WebSocket.ts",
+		"egret.NativeSocket": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/NativeSocket.ts",
+		"egret.WebSocket": "D:/Program/Egret/engine/Egret/EgretEngine/win/egret/src/extension/socket/WebSocket.ts"
 	}
 }

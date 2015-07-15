@@ -10,8 +10,11 @@
         {
             "name": "res"
         },
-		{
+        {
             "name": "gui"
+        },
+        { 
+            "name": "socket"
         }
     ],
     "native": {
