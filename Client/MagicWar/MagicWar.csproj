@@ -505,16 +505,19 @@
     <TypeScriptCompile Include="libs\core\extension\gui\gui.d.ts" />
     <TypeScriptCompile Include="libs\core\extension\oldVersion\version_old.d.ts" />
     <TypeScriptCompile Include="libs\core\extension\resource\res.d.ts" />
+    <TypeScriptCompile Include="libs\core\extension\socket\socket.d.ts" />
     <TypeScriptCompile Include="libs\exml.d.ts" />
     <TypeScriptCompile Include="libs\_references.ts" />
     <TypeScriptCompile Include="src\AssetAdapter.ts" />
     <TypeScriptCompile Include="src\config\Config.ts" />
-    <TypeScriptCompile Include="src\ConstString.ts" />
+    <TypeScriptCompile Include="src\lang\ConstString_CN.ts" />
+    <TypeScriptCompile Include="src\lang\ConstString.ts" />
     <TypeScriptCompile Include="src\LoadingUI.ts" />
     <TypeScriptCompile Include="src\Main.ts" />
     <TypeScriptCompile Include="src\network\NetCenter.ts" />
     <TypeScriptCompile Include="src\scene\Showcase.ts" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

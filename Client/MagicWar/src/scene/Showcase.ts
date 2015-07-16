@@ -126,6 +126,8 @@ class Showcase extends egret.gui.SkinnableComponent {
     private onButtonClick(event:egret.TouchEvent):void {
         var selection = this.list.selectedItem ? this.list.selectedItem.label : "nothing";
         egret.gui.Alert.show("You have selected " + selection, "Title");
+        Game.ConstString.ensureLang("CN");
+        alert(Game.ConstString.eNotWS);
     }
 
     private onListSelectionChange(event:egret.gui.IndexChangeEvent):void {

@@ -10,39 +10,51 @@
 
         }
 
-        public init() {
-            if (window["WebSocket"]) {
-                try {
+        //--------------------------------------------------------------------------------
+        public init()
+        {
+            if (window["WebSocket"])
+            {
+                try
+                {
                     this.mWebSocket = new egret.WebSocket();
                     this.mWebSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this.doMessage, this);
                     this.mWebSocket.addEventListener(egret.Event.CONNECT, this.doOpen, this);
                 }
-                catch (e){
-                    console.log(game.ConstString.eFailedWS);
+                catch (e)
+                {
+                    console.log(Game.ConstString.eFailedWS);
                     return;
                 }
-            } else {
-                console.log(game.ConstString.eNotWS);
+            }
+            else
+            {
+                console.log(Game.ConstString.eNotWS);
                 return;
             }
         }
 
+        //--------------------------------------------------------------------------------
         public doOpen(e:egret.Event): void {
 
         }
 
+        //--------------------------------------------------------------------------------
         public doMessage(e: egret.ProgressEvent): void {
 
         }
 
+        //--------------------------------------------------------------------------------
         public doSend(e: egret.ProgressEvent): void {
 
         }
 
+        //--------------------------------------------------------------------------------
         public doClose(e: egret.Event): void {
 
         }
 
+        //--------------------------------------------------------------------------------
         public doError(e: egret.Event): void {
 
         }
