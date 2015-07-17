@@ -104,6 +104,8 @@ var Main = (function (_super) {
         this.addChild(this.gameLayer);
         var bitmap = new egret.Bitmap();
         bitmap.texture = RES.getRes("bgImage");
+        bitmap.width = this.stage.stageWidth;
+        bitmap.height = this.stage.stageHeight;
         this.gameLayer.addChild(bitmap);
         //GUI的组件必须都在这个容器内部,UIStage会始终自动保持跟舞台一样大小。
         //GUI components must be within the container, UIStage will always remain the same as stage size automatically.
@@ -113,8 +115,8 @@ var Main = (function (_super) {
         //在GUI范围内一律使用addElement等方法替代addChild等方法。
         //Within GUI scope, addChild methods should be replaced by addElement methods.
         this.guiLayer.addElement(showcase);
+        showcase.horizontalCenter = 0;
     };
     return Main;
 })(egret.DisplayObjectContainer);
 Main.prototype.__class__ = "Main";
-//# sourceMappingURL=Main.js.map

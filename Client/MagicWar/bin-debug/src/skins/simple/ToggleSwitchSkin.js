@@ -84,4 +84,3 @@ var skins;
         ToggleSwitchSkin.prototype.__class__ = "skins.simple.ToggleSwitchSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=ToggleSwitchSkin.js.map

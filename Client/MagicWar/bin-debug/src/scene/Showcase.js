@@ -88,4 +88,3 @@ var Showcase = (function (_super) {
     return Showcase;
 })(egret.gui.SkinnableComponent);
 Showcase.prototype.__class__ = "Showcase";
-//# sourceMappingURL=Showcase.js.map

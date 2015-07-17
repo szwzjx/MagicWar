@@ -64,4 +64,3 @@ var skins;
         TitleWindowSkin.prototype.__class__ = "skins.simple.TitleWindowSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=TitleWindowSkin.js.map

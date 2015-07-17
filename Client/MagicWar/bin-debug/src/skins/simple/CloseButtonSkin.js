@@ -49,4 +49,3 @@ var skins;
         CloseButtonSkin.prototype.__class__ = "skins.simple.CloseButtonSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=CloseButtonSkin.js.map

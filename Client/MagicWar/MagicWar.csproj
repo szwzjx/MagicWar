@@ -505,6 +505,7 @@
     <TypeScriptCompile Include="libs\core\extension\gui\gui.d.ts" />
     <TypeScriptCompile Include="libs\core\extension\oldVersion\version_old.d.ts" />
     <TypeScriptCompile Include="libs\core\extension\resource\res.d.ts" />
+    <TypeScriptCompile Include="libs\core\extension\socket\socket.d.ts" />
     <TypeScriptCompile Include="libs\exml.d.ts" />
     <TypeScriptCompile Include="libs\_references.ts" />
     <TypeScriptCompile Include="src\AssetAdapter.ts" />

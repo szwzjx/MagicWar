@@ -77,4 +77,3 @@ var skins;
         ToggleButtonSkin.prototype.__class__ = "skins.simple.ToggleButtonSkin";
     })(simple = skins.simple || (skins.simple = {}));
 })(skins || (skins = {}));
-//# sourceMappingURL=ToggleButtonSkin.js.map
