@@ -5,10 +5,11 @@
 
         public STAGE_HEIGHT: number; 
 
+        private static instance: Config;
         /** 
-          * The types of language games 
-          *@ param "EN" "CN"
-          */
+         * The types of language games 
+         * @ type "EN" "CN"
+         */
         public LANGUAGE_TYPE: string;
 
         public DEBUG: boolean;
@@ -22,6 +23,17 @@
             this.LANGUAGE_TYPE = "CN";
 
             this.DEBUG = true;
+        }
+
+        //--------------------------------------------------------------------------------
+        public static getInstance(): Config
+        {
+            if (this.instance == null)
+            {
+                this.instance = new Config();
+            }
+
+            return <Config><any>(this.instance);
         }
     }
 }

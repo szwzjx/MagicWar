@@ -22,14 +22,14 @@
             }
             else
             {
-               // Game.ConstString_CN.cFailedWS;
-                conststring = egret.getDefinitionByName("Game.ConstString_CN");
+                lang = "Game.ConstString_CN";
+                conststring = egret.getDefinitionByName(lang);
             }
            
             if (conststring)
             {
-                self.eNotWS = conststring.eNotWS;
-                self.eFailedWS = conststring.eFailedWS;
+                self.eNotWS = conststring.cNotWS;
+                self.eFailedWS = conststring.cFailedWS;
             }
         }
     }
