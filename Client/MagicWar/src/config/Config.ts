@@ -1,4 +1,4 @@
-﻿module game {
+﻿module Game {
     export class Config {
 
         public STAGE_WIDTH: number;
