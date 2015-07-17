@@ -125,7 +125,7 @@ class Main extends egret.DisplayObjectContainer {
         bitmap.height = this.stage.stageHeight;
         this.gameLayer.addChild(bitmap);
 
-
+        Game.ConstString.ensureLang(Game.Config.getInstance().LANGUAGE_TYPE);
 
         //GUI的组件必须都在这个容器内部,UIStage会始终自动保持跟舞台一样大小。
         //GUI components must be within the container, UIStage will always remain the same as stage size automatically.
