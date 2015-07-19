@@ -3,6 +3,8 @@
 
         public mWebSocket: egret.WebSocket;
 
+        public static instance: NetCenter;
+
         public constructor() {
 
         }
@@ -51,22 +53,34 @@
 
         //--------------------------------------------------------------------------------
         public doOpen(e: egret.Event): void {
-
+            console.log("WebSocket connect success!");
+            this.send("I'm cool!");
         }
 
         //--------------------------------------------------------------------------------
         public doMessage(e: egret.ProgressEvent): void {
-
+            //console.log("WebSocket on message!");
+            var msg = this.mWebSocket.readUTF();
+            console.log("Client get message：" + msg);
         }
 
         //--------------------------------------------------------------------------------
         public doClose(e: egret.Event): void {
-
+            console.warn("WebSocket connect close!");
         }
 
         //--------------------------------------------------------------------------------
         public doError(e: egret.Event): void {
+            console.error("WebSocket connect error!");
+        }
 
+        //--------------------------------------------------------------------------------
+        public static getInstance(): NetCenter {
+            if (!this.instance) {
+                this.instance = new NetCenter();
+            }
+
+            return <NetCenter><any>(this.instance);
         }
     }
 }
