@@ -7,6 +7,8 @@
 		<e:State name="disabled"/>
 	</e:states>
 	<e:Button id="btnShowMessage" label="click" y="50" horizontalCenter="0"/>
+	<e:Button label="click" id="btnShowMessage1" left="11" top="12"/>
+	<e:Button label="click" id="btnShowMessage2" bottom="9" left="8"/>
 	<e:List id="list"  skinName="skins.simple.ListSkin" y="150" itemRendererSkinName="skins.simple.ItemRendererSkin" horizontalCenter="0"/>
 	<e:Button label="click" id="btnShowMessage0" x="10" horizontalCenter="8" bottom="5"/>
 </e:Skin>

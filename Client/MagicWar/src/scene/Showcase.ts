@@ -101,6 +101,8 @@ class Showcase extends egret.gui.SkinnableComponent {
      created and measured, you can use them now.
      */
     public childrenCreated() {
+        this.width = Game.Config.getInstance().STAGE_WIDTH;
+        this.height = Game.Config.getInstance().STAGE_HEIGHT;
         this.btnShowMessage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onButtonClick, this);
         this.list.addEventListener(egret.gui.IndexChangeEvent.CHANGE, this.onListSelectionChange, this);
     }

@@ -4,8 +4,7 @@
         public STAGE_WIDTH: number;
 
         public STAGE_HEIGHT: number; 
-
-        private static instance: Config;
+        
         /** 
          * The types of language games 
          * @ type "EN" "CN"
@@ -13,6 +12,12 @@
         public LANGUAGE_TYPE: string;
 
         public DEBUG: boolean;
+
+        public static MAGICWAR_IP = "127.0.0.1";
+
+        public static MAGUCWAR_PORT = 5668;
+
+        private static instance: Config;
 
         public constructor()
         {

@@ -40,7 +40,11 @@ class Main extends egret.DisplayObjectContainer {
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
     }
 
-    private onAddToStage(event:egret.Event) {
+    private onAddToStage(event: egret.Event) {
+
+        Game.Config.getInstance().STAGE_WIDTH = this.stage.stageWidth;
+        Game.Config.getInstance().STAGE_HEIGHT = this.stage.stageHeight;
+
         //inject the custom material parser
         //注入自定义的素材解析器
         egret.Injector.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
