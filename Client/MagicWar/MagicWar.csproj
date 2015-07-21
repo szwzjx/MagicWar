@@ -22,9 +22,13 @@
     <Content Include="bin-debug\lib\egret_file_list.js" />
     <Content Include="bin-debug\lib\egret_file_list_native.js" />
     <Content Include="bin-debug\src\AssetAdapter.js" />
+    <Content Include="bin-debug\src\config\Config.js" />
     <Content Include="bin-debug\src\game_file_list.js" />
+    <Content Include="bin-debug\src\lang\ConstString.js" />
+    <Content Include="bin-debug\src\lang\ConstString_CN.js" />
     <Content Include="bin-debug\src\LoadingUI.js" />
     <Content Include="bin-debug\src\Main.js" />
+    <Content Include="bin-debug\src\network\NetCenter.js" />
     <Content Include="bin-debug\src\scene\Showcase.js" />
     <Content Include="bin-debug\src\skins\scene\ShowcaseSkin.js" />
     <Content Include="bin-debug\src\skins\simple\AlertSkin.js" />
