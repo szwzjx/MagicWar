@@ -13,9 +13,11 @@
 
         public DEBUG: boolean;
 
-        public static MAGICWAR_IP = "127.0.0.1";
+        public MAGICWAR_IP: string;
 
-        public static MAGUCWAR_PORT = 5668;
+        public MAGUCWAR_PORT; number;
+
+        public VERSION: string
 
         private static instance: Config;
 
@@ -27,7 +29,13 @@
 
             this.LANGUAGE_TYPE = "CN";
 
-            this.DEBUG = true;
+            this.DEBUG = false;
+
+            this.MAGICWAR_IP = "127.0.0.1";
+
+            this.MAGUCWAR_PORT = 5688;
+
+            this.VERSION = "0.0.1";
         }
 
         //--------------------------------------------------------------------------------

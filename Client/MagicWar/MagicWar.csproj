@@ -495,6 +495,7 @@
     <Content Include="src\skins\simple\VSliderThumbSkin.exml" />
     <Content Include="src\skins\simple\ButtonSkin.exml" />
     <Content Include="src\skins\simple\CheckBoxSkin.exml" />
+    <Content Include="resource\config\config.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -519,7 +520,6 @@
     <TypeScriptCompile Include="src\LoadingUI.ts" />
     <TypeScriptCompile Include="src\Main.ts" />
     <TypeScriptCompile Include="src\network\NetCenter.ts" />
-    <TypeScriptCompile Include="src\network\NetWebSocket.ts" />
     <TypeScriptCompile Include="src\scene\Showcase.ts" />
   </ItemGroup>
   <ItemGroup />
