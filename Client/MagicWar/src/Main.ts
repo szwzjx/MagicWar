@@ -35,6 +35,8 @@ class Main extends egret.DisplayObjectContainer {
 
     private guiLayer: egret.gui.UIStage;
 
+    private textLog: egret.TextField;
+
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -66,8 +68,8 @@ class Main extends egret.DisplayObjectContainer {
     //--------------------------------------------------------------------------------
     private handleConfig(result: Array<any>): void {
 
-        if (result) {
-
+        if (result)
+        {
             Game.Config.getInstance().LANGUAGE_TYPE = result["language"];
             Game.Config.getInstance().DEBUG = result["debug"];
             Game.Config.getInstance().MAGICWAR_IP = result["ip"];
@@ -75,8 +77,6 @@ class Main extends egret.DisplayObjectContainer {
             Game.Config.getInstance().VERSION = result["version"];
 
             Game.ConstString.ensureLang(Game.Config.getInstance().LANGUAGE_TYPE);
-
-            console.log("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
         }
 
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
@@ -110,9 +110,9 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     //--------------------------------------------------------------------------------
-    private createScene():void {
-
-        egret.Profiler.getInstance().run();
+    private createScene(): void
+    {
+        //egret.Profiler.getInstance().run();
 
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
@@ -125,6 +125,28 @@ class Main extends egret.DisplayObjectContainer {
         bitmap.width = this.stage.stageWidth;
         bitmap.height = this.stage.stageHeight;
         this.gameLayer.addChild(bitmap);
+
+        if (Game.Config.getInstance().DEBUG)
+        {
+            Game.log.getInstance().MSG_LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
+            Game.log.getInstance().visible = false;
+
+            this.textLog = new egret.TextField();
+            this.textLog.x = Game.Config.getInstance().STAGE_WIDTH - 68;
+            this.textLog.y = Game.Config.getInstance().STAGE_HEIGHT - 30;
+            this.textLog.text = "LOG";
+            this.textLog.touchEnabled = true;
+            this.textLog.addEventListener(egret.TouchEvent.TOUCH_TAP, this.showLog, this);
+
+            this.addChild(Game.log.getInstance());
+            this.addChild(this.textLog);
+        }
+    }
+
+    //--------------------------------------------------------------------------------
+    private showLog(): void
+    {
+        Game.log.getInstance().visible = !Game.log.getInstance().visible;
     }
 }
 
