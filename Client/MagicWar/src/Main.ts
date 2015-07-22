@@ -126,6 +126,15 @@ class Main extends egret.DisplayObjectContainer {
         bitmap.height = this.stage.stageHeight;
         this.gameLayer.addChild(bitmap);
 
+        var version: egret.TextField = new egret.TextField();
+        version.width = 100;
+        version.size = 14;
+        version.x = (Game.Config.getInstance().STAGE_WIDTH - version.width) / 2;
+        version.y = Game.Config.getInstance().STAGE_HEIGHT - 25;
+        version.textAlign = egret.HorizontalAlign.CENTER;
+        version.text = "version: " + Game.Config.getInstance().VERSION;
+        this.gameLayer.addChild(version);
+
         if (Game.Config.getInstance().DEBUG)
         {
             Game.log.getInstance().MSG_LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);

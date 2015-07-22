@@ -63,6 +63,7 @@
     <Content Include="bin-debug\src\skins\simple\VScrollBarThumbSkin.js" />
     <Content Include="bin-debug\src\skins\simple\VSliderSkin.js" />
     <Content Include="bin-debug\src\skins\simple\VSliderThumbSkin.js" />
+    <Content Include="bin\tsc_config_temp.txt" />
     <Content Include="launcher\egret_loader.js" />
     <Content Include="launcher\egret_require.js" />
     <Content Include="launcher\index.html" />

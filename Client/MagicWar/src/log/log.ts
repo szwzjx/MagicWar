@@ -2,10 +2,6 @@
 
     export class log extends egret.DisplayObjectContainer{
 
-        private mListLog: egret.gui.List;
-
-        private mCollLog: egret.gui.ArrayCollection;
-
         private mScrollView: egret.ScrollView;
 
         private mTextLog: egret.TextField;
