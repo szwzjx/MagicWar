@@ -2,4 +2,6 @@
 /Client/MagicWar/libs
 /Client/MagicWar/bin-debug
 /Client/MagicWar/obj
-/Client/MagicWar/bin
+/Client/MagicWar/bi
+/Server/workerman.log
+/Server/Applications/MagicWar/web
