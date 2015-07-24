@@ -521,7 +521,8 @@
     <TypeScriptCompile Include="src\LoadingUI.ts" />
     <TypeScriptCompile Include="src\Main.ts" />
     <TypeScriptCompile Include="src\network\NetCenter.ts" />
-    <TypeScriptCompile Include="src\log\log.ts" />
+    <TypeScriptCompile Include="src\log\Log.ts" />
+    <TypeScriptCompile Include="src\network\NetProtocol.ts" />
     <TypeScriptCompile Include="src\scene\Showcase.ts" />
   </ItemGroup>
   <ItemGroup />

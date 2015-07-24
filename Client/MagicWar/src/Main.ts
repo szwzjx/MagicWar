@@ -137,8 +137,8 @@ class Main extends egret.DisplayObjectContainer {
 
         if (Game.Config.getInstance().DEBUG)
         {
-            Game.log.getInstance().MSG_LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
-            Game.log.getInstance().visible = false;
+            Game.Log.getInstance().MSG_LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
+            Game.Log.getInstance().visible = false;
 
             this.textLog = new egret.TextField();
             this.textLog.x = Game.Config.getInstance().STAGE_WIDTH - 68;
@@ -147,7 +147,7 @@ class Main extends egret.DisplayObjectContainer {
             this.textLog.touchEnabled = true;
             this.textLog.addEventListener(egret.TouchEvent.TOUCH_TAP, this.showLog, this);
 
-            this.addChild(Game.log.getInstance());
+            this.addChild(Game.Log.getInstance());
             this.addChild(this.textLog);
         }
     }
@@ -155,7 +155,7 @@ class Main extends egret.DisplayObjectContainer {
     //--------------------------------------------------------------------------------
     private showLog(): void
     {
-        Game.log.getInstance().visible = !Game.log.getInstance().visible;
+        Game.Log.getInstance().visible = !Game.Log.getInstance().visible;
     }
 }
 

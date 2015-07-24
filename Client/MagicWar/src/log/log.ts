@@ -1,12 +1,12 @@
 ﻿module Game {
 
-    export class log extends egret.DisplayObjectContainer{
+    export class Log extends egret.DisplayObjectContainer{
 
         private mScrollView: egret.ScrollView;
 
         private mTextLog: egret.TextField;
 
-        private static instance: log;
+        private static instance: Log;
 
         public constructor() {
             super();
@@ -84,14 +84,14 @@
         }
 
         //--------------------------------------------------------------------------------
-        public static getInstance(): log
+        public static getInstance(): Log
         {
             if (this.instance == null) {
                 
-                this.instance = new log();
+                this.instance = new Log();
             }
 
-            return <log><any>(this.instance);
+            return <Log><any>(this.instance);
         }
     }
 }
