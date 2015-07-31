@@ -1,12 +1,12 @@
 ﻿module Game {
 
-    export class log extends egret.DisplayObjectContainer{
+    export class Log extends egret.DisplayObjectContainer{
 
         private mScrollView: egret.ScrollView;
 
         private mTextLog: egret.TextField;
 
-        private static instance: log;
+        private static instance: Log;
 
         public constructor() {
             super();
@@ -27,7 +27,7 @@
 
             this.mTextLog = new egret.TextField();
             this.mTextLog.width = W;
-            this.mTextLog.size = 14;
+            this.mTextLog.size = 24;
 
             this.mScrollView = new egret.ScrollView(this.mTextLog);
             this.mScrollView.width = W;
@@ -44,54 +44,58 @@
         }
 
         //--------------------------------------------------------------------------------
-        public MSG_LOG(msg: any, value: boolean = false): void
+        public LOG(msg: any, value: boolean = false): void
         {
             console.log(msg);
 
-            if (!value) {
+            if (!value)
+            {
                 this.updateLog(msg,0xFFFFFF);
             }
         }
 
         //--------------------------------------------------------------------------------
-        public MSG_WARN(msg: any, value: boolean = false): void
+        public WARN(msg: any, value: boolean = false): void
         {
             console.warn(msg);
 
-            if (!value) {
+            if (!value)
+            {
                 this.updateLog(msg, 0xCCCCCC);
             }
         }
 
         //--------------------------------------------------------------------------------
-        public MSG_INFO(msg: any, value: boolean = false): void
+        public INFO(msg: any, value: boolean = false): void
         {
             console.info(msg);
 
-            if (!value) {
+            if (!value)
+            {
                 this.updateLog(msg, 0x00FF00);
             }
         }
 
         //--------------------------------------------------------------------------------
-        public MSG_ERROE(msg: any, value: boolean = false): void
+        public ERROE(msg: any, value: boolean = false): void
         {
             console.error(msg);
 
-            if (!value) {
+            if (!value)
+            {
                 this.updateLog(msg, 0xFF0000);
             }
         }
 
         //--------------------------------------------------------------------------------
-        public static getInstance(): log
+        public static L(): Log
         {
             if (this.instance == null) {
                 
-                this.instance = new log();
+                this.instance = new Log();
             }
 
-            return <log><any>(this.instance);
+            return <Log><any>(this.instance);
         }
     }
 }

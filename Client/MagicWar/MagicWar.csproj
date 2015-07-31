@@ -497,6 +497,7 @@
     <Content Include="src\skins\simple\ButtonSkin.exml" />
     <Content Include="src\skins\simple\CheckBoxSkin.exml" />
     <Content Include="resource\config\config.json" />
+    <Content Include="src\skins\panel\panelLoginSkin.exml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -521,8 +522,14 @@
     <TypeScriptCompile Include="src\LoadingUI.ts" />
     <TypeScriptCompile Include="src\Main.ts" />
     <TypeScriptCompile Include="src\network\NetCenter.ts" />
-    <TypeScriptCompile Include="src\log\log.ts" />
+    <TypeScriptCompile Include="src\log\Log.ts" />
+    <TypeScriptCompile Include="src\network\NetProtocol.ts" />
+    <TypeScriptCompile Include="src\scene\PlayerLayer.ts" />
     <TypeScriptCompile Include="src\scene\Showcase.ts" />
+    <TypeScriptCompile Include="src\views\GamePanel.ts" />
+    <TypeScriptCompile Include="src\views\IPanel.ts" />
+    <TypeScriptCompile Include="src\views\PanelLogin.ts" />
+    <TypeScriptCompile Include="src\views\panelUI\PanelLoginUI.ts" />
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

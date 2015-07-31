@@ -310,6 +310,11 @@
 				"isFolder":false,
 				"key":"vscrolltrack_png",
 				"name":"vscrolltrack_png"
+			},
+			{
+				"isFolder":false,
+				"key":"run_png",
+				"name":"run_png"
 			}]
 		}
 	},
