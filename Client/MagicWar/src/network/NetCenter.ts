@@ -3,10 +3,13 @@
 
         public mWebSocket: egret.WebSocket;
 
+        public NETEVENT: any[];
+
         public static instance: NetCenter;
 
-        public constructor() {
-
+        public constructor()
+        {
+            this.NETEVENT = [];
         }
 
         //--------------------------------------------------------------------------------
@@ -32,19 +35,44 @@
                 }
                 catch (e)
                 {
-                    Game.Log.getInstance().MSG_LOG(Game.ConstString.eFailedWS);
+                    Game.Log.L().LOG(Game.ConstString.eFailedWS);
                     return;
                 }
             }
             else
             {
-                Game.Log.getInstance().MSG_LOG(Game.ConstString.eNotWS);
+                Game.Log.L().LOG(Game.ConstString.eNotWS);
                 return;
             }
         }
 
         //--------------------------------------------------------------------------------
-        public register(name:string,password:string): void
+        private regEssential(): void
+        {
+            this.regEvent(NetProtocol.ctsRegister, this.stcRegister);
+        }
+
+        //--------------------------------------------------------------------------------
+        private regEvent(value:number,fun:any): void
+        {
+            this.NETEVENT[value] = fun;
+        }
+
+        //--------------------------------------------------------------------------------
+        private resEvent(value: number, param: any): any
+        {
+            var fun = this.NETEVENT[value];
+
+            if (typeof fun == "function")
+            {
+                return fun(param);
+            }
+
+            Game.Log.L().ERROE("Not found function:" +  value);
+        }
+
+        //--------------------------------------------------------------------------------
+        public ctsRegister(name:string,password:string): void
         {
             var msg = {
                 MWP: NetProtocol.ctsRegister,
@@ -53,6 +81,19 @@
             };
 
             this.send(msg);
+        }
+
+        //--------------------------------------------------------------------------------
+        private stcRegister(data:any): void
+        {
+            if (data)
+            {
+
+            }
+            else
+            {
+                Game.Log.L().ERROE(Game.ConstString.eFailedRegister);
+            }
         }
 
         //--------------------------------------------------------------------------------
@@ -86,26 +127,48 @@
         //--------------------------------------------------------------------------------
         public doOpen(e: egret.Event): void
         {
-            Game.Log.getInstance().MSG_LOG("WebSocket connect success!");
+            Game.Log.L().LOG("WebSocket connect success!");
         }
 
         //--------------------------------------------------------------------------------
         public doMessage(e: egret.ProgressEvent): void
         {
             var msg = this.mWebSocket.readUTF();
-            Game.Log.getInstance().MSG_LOG("Client get message：" + msg);
+            var data = JSON.parse(msg);
+
+            if (data)
+            {
+                if (data["MWP"] && data["data"])
+                {
+                    this.resEvent(data["MWP"],data["data"]);
+                }
+
+                Game.Log.L().LOG("Client get message：" + data["MWP"]);
+                return;
+            }
+
+            Game.Log.L().ERROE("ERROR：" + msg);
         }
 
         //--------------------------------------------------------------------------------
         public doClose(e: egret.Event): void
         {
-            Game.Log.getInstance().MSG_WARN("WebSocket connect close!");
+            Game.Log.L().WARN("WebSocket connect close!");
+
+            if (this.mWebSocket)
+            {
+                this.mWebSocket.removeEventListener(egret.Event.CONNECT, this.doOpen, this);
+                this.mWebSocket.removeEventListener(egret.ProgressEvent.SOCKET_DATA, this.doMessage, this);
+                this.mWebSocket.removeEventListener(egret.Event.CLOSE, this.doClose, this);
+                this.mWebSocket.removeEventListener(egret.IOErrorEvent.IO_ERROR, this.doError, this);
+                this.mWebSocket = null;
+            }
         }
 
         //--------------------------------------------------------------------------------
         public doError(e: egret.Event): void
         {
-            Game.Log.getInstance().MSG_ERROE("WebSocket connect error!");
+            Game.Log.L().ERROE("WebSocket connect error!");
         }
 
         //--------------------------------------------------------------------------------

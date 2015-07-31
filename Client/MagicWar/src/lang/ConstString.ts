@@ -5,6 +5,8 @@
 
         public static eFailedWS: string = "Failed to create WebSocket!";
 
+        public static eFailedRegister: string = "Failed to register!";
+
         public constructor()
         {
 

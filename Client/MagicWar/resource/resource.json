@@ -1,7 +1,7 @@
 {
     "groups": [
         {
-            "keys": "bgImage",
+            "keys": "bgImage,run_json,run_png",
             "name":"preload"
         },
         {
@@ -10,6 +10,16 @@
         }
     ],
 	"resources":[
+	{
+		"name":"run_json",
+		"type":"json",
+		"url":"assets/avatar/run.json"
+	},
+		{
+		"name":"run_png",
+		"type":"image",
+		"url":"assets/avatar/run.png"
+	},
 	{
 		"name":"config_json",
 		"type":"json",
@@ -264,7 +274,7 @@
 	{
 		"name":"bgImage",
 		"type":"image",
-		"url":"assets/bg.jpg"
+		"url":"assets/bg.png"
 	},
 	{
 		"name":"app_list_item_cutlline_png",

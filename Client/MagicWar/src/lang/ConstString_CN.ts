@@ -5,6 +5,8 @@
 
         public static cFailedWS: string = "WebSocket 创建失败！";
 
+        public static cFailedRegister: string = "注册失败！";
+
         public constructor() {
 
         }
