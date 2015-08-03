@@ -11,11 +11,26 @@
     ],
 	"resources":[
 	{
+		"name":"mw_border_png",
+		"type":"image",
+		"url":"assets/com/mw_border.png"
+	},
+	{
+		"name":"mw_role_boy_png",
+		"type":"image",
+		"url":"assets/panel/panelrole/mw_role_boy.png"
+	},
+	{
+		"name":"mw_role_girl_png",
+		"type":"image",
+		"url":"assets/panel/panelrole/mw_role_girl.png"
+	},
+	{
 		"name":"run_json",
 		"type":"json",
 		"url":"assets/avatar/run.json"
 	},
-		{
+	{
 		"name":"run_png",
 		"type":"image",
 		"url":"assets/avatar/run.png"

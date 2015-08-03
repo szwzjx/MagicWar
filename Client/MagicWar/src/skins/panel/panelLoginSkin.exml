@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<e:Skin width="720" height="1280" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+<e:Skin width="720" height="1280" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing" xmlns:Game="Game.*">
 	<w:HostComponent name="egret.gui.SkinnableComponent"/>
 	<w:Declarations/>
 	<e:states>
@@ -10,8 +10,8 @@
 	<e:Button id="btn_register" label="注册" horizontalCenter="0" name="btn_register" bottom="273"/>
 	<e:Label text="MagicWar" size="60" horizontalCenter="0" top="172"/>
 	<e:Group height="171" width="298" horizontalCenter="0" verticalCenter="-22.5">
-		<e:TextInput x="103" y="28"/>
-		<e:TextInput x="103" y="107"/>
+		<e:TextInput id="ti_name" x="103" y="28" name="ti_name"/>
+		<e:TextInput id="ti_pwd" x="103" y="107" name="ti_pwd"/>
 		<e:Label text="账户" x="6" y="33"/>
 		<e:Label text="密码" y="112" x="6"/>
 	</e:Group>

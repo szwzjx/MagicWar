@@ -3,8 +3,6 @@
         
         public constructor() {
             super();
-            this.width = Game.Config.getInstance().STAGE_WIDTH;
-            this.height = Game.Config.getInstance().STAGE_HEIGHT;
         }
 
         //--------------------------------------------------------------------------------

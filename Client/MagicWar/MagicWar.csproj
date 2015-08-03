@@ -383,7 +383,10 @@
     <Content Include="libs\core\extension\resource\events\ResourceEvent.js" />
     <Content Include="libs\core\extension\resource\Resource.js" />
     <Content Include="libs\core\jslib\NumberUtils.js" />
+    <Content Include="resource\assets\avatar\run.png" />
     <Content Include="resource\assets\bg.jpg" />
+    <Content Include="resource\assets\panel\panelrole\mw_role_boy.png" />
+    <Content Include="resource\assets\panel\panelrole\mw_role_girl.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_disabled.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_normal.png" />
     <Content Include="resource\assets\simple\CheckBox\checkbox-select_over.png" />
@@ -498,6 +501,8 @@
     <Content Include="src\skins\simple\CheckBoxSkin.exml" />
     <Content Include="resource\config\config.json" />
     <Content Include="src\skins\panel\panelLoginSkin.exml" />
+    <Content Include="resource\assets\avatar\run.json" />
+    <Content Include="src\skins\panel\panelRoleSkin.exml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -527,11 +532,15 @@
     <TypeScriptCompile Include="src\scene\PlayerLayer.ts" />
     <TypeScriptCompile Include="src\scene\Showcase.ts" />
     <TypeScriptCompile Include="src\views\GamePanel.ts" />
+    <TypeScriptCompile Include="src\views\GameUI.ts" />
     <TypeScriptCompile Include="src\views\IPanel.ts" />
     <TypeScriptCompile Include="src\views\PanelLogin.ts" />
     <TypeScriptCompile Include="src\views\panelUI\PanelLoginUI.ts" />
+    <TypeScriptCompile Include="src\views\panelUI\PanelRoleUI.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="resource\assets\panel\panelogin\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>

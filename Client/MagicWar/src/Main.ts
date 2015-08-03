@@ -33,7 +33,7 @@ class Main extends egret.DisplayObjectContainer {
 
     private gameLayer: egret.DisplayObjectContainer;
 
-    private guiLayer: egret.gui.UIStage;
+    private guiLayer: Game.GameUI;
 
     private textLog: egret.TextField;
 
@@ -117,7 +117,7 @@ class Main extends egret.DisplayObjectContainer {
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
 
-        this.guiLayer = new egret.gui.UIStage();
+        this.guiLayer = new Game.GameUI();
         this.addChild(this.guiLayer);
 
         var bitmap:egret.Bitmap = new egret.Bitmap();
@@ -125,10 +125,6 @@ class Main extends egret.DisplayObjectContainer {
         bitmap.width = this.stage.stageWidth;
         bitmap.height = this.stage.stageHeight;
         this.gameLayer.addChild(bitmap);
-
-        //var player = new Game.PlayerLayer();
-        //this.addChild(player);
-        //player.start();
 
         var version: egret.TextField = new egret.TextField();
         version.width = 200;
@@ -139,19 +135,14 @@ class Main extends egret.DisplayObjectContainer {
         version.text = "version: " + Game.Config.getInstance().VERSION;
         this.gameLayer.addChild(version);
 
-        var login = new Game.PanelLogin();
-        this.guiLayer.addElement(login);
-
         if (Game.Config.getInstance().DEBUG)
         {
             var ww = document.documentElement.clientWidth || document.body.clientWidth || 1280;
             var hh = document.documentElement.clientHeight || document.body.clientHeight || 720;
 
             Game.Log.L().LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
-
             Game.Log.L().LOG("STAGE_WIDTH: " + Game.Config.getInstance().STAGE_WIDTH);
             Game.Log.L().LOG("STAGE_HEIGHT: " + Game.Config.getInstance().STAGE_HEIGHT);
-
             Game.Log.L().LOG("clientWidth: " + document.documentElement.clientWidth);
             Game.Log.L().LOG("clientHeight: " + document.documentElement.clientHeight);
 

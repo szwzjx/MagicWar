@@ -84,6 +84,28 @@
         }
 
         //--------------------------------------------------------------------------------
+        public ctsGetRole(name: string): void
+        {
+            var msg = {
+                MWP: NetProtocol.ctsGetRole,
+                Name: name,
+            };
+
+            this.send(msg);
+        }
+
+        //--------------------------------------------------------------------------------
+        public ctsLogin(name: string, password: string): void {
+            var msg = {
+                MWP: NetProtocol.ctsLogin,
+                Name: name,
+                Password: password
+            };
+
+            this.send(msg);
+        }
+
+        //--------------------------------------------------------------------------------
         private stcRegister(data:any): void
         {
             if (data)
@@ -111,6 +133,10 @@
                 if (this.mWebSocket && this.mWebSocket.connected)
                 {
                     this.mWebSocket.writeUTF(this.reviseMsg(message));
+                }
+                else
+                {
+                    Game.Log.L().ERROE("未连接到服务器！");
                 }
             }
         }

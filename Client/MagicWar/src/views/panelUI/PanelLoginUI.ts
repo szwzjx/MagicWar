@@ -6,6 +6,10 @@
 
         public btn_register: egret.gui.Button;
 
+        public ti_pwd: egret.gui.TextInput;
+
+        public ti_name: egret.gui.TextInput;
+
         public constructor() {
             super();
             this.skinName = "skins.panel.panelLoginSkin";

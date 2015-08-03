@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin width="300" height="120" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset source="mw_border_png" width="300" height="120" scale9Grid="15,15,90,100" x="0" y="0"/>
+	<e:UIAsset id="UIA_head" source="mw_role_boy_png" name="UIA_head" y="10" x="4"/>
+	<e:Label id="lable_lv" x="110" textColor="0xFFFFFF" text="Lv.66" width="186" name="lable_lv" y="64"/>
+	<e:Label id="lable_name" x="110" textColor="0xFFFFFF" width="186" name="lable_name" text="伽孽噬魂" y="22"/>
+</e:Skin>
