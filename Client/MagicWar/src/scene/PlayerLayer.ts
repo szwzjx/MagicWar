@@ -4,7 +4,11 @@
         private mc: egret.MovieClip;
 
         private mcf: egret.MovieClipDataFactory;
+
         private timer: egret.Timer;//默认1秒
+
+        private dd: number = 1;
+
         public constructor() {
             super();
         }
@@ -25,8 +29,9 @@
             this.timer.addEventListener(egret.TimerEvent.TIMER, this.onRoleTimer, this);
            // this.timer.start();
         }
-        private dd: number = 1;
+        
 
+        //--------------------------------------------------------------------------------
         private onRoleTimer(evt: egret.Event): void {
 
             this.dd = this.dd > 12 ? 1 : this.dd;

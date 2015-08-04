@@ -5,11 +5,14 @@
 
         public NETEVENT: any[];
 
+        public DATA: any;
+
         public static instance: NetCenter;
 
         public constructor()
         {
             this.NETEVENT = [];
+            this.DATA = Game.Data.instance;
         }
 
         //--------------------------------------------------------------------------------
@@ -35,13 +38,13 @@
                 }
                 catch (e)
                 {
-                    Game.Log.L().LOG(Game.ConstString.eFailedWS);
+                    Game.Log.L.LOG(Game.ConstString.eFailedWS);
                     return;
                 }
             }
             else
             {
-                Game.Log.L().LOG(Game.ConstString.eNotWS);
+                Game.Log.L.LOG(Game.ConstString.eNotWS);
                 return;
             }
         }
@@ -50,6 +53,7 @@
         private regEssential(): void
         {
             this.regEvent(NetProtocol.ctsRegister, this.stcRegister);
+            this.regEvent(NetProtocol.ctsGetRole, this.stcGetRole);
         }
 
         //--------------------------------------------------------------------------------
@@ -68,8 +72,12 @@
                 return fun(param);
             }
 
-            Game.Log.L().ERROE("Not found function:" +  value);
+            Game.Log.L.ERROE("Not found function:" +  value);
         }
+
+        /*-------------------------------------------------------------------------------
+                                      client --> server               
+          -------------------------------------------------------------------------------*/
 
         //--------------------------------------------------------------------------------
         public ctsRegister(name:string,password:string): void
@@ -105,6 +113,10 @@
             this.send(msg);
         }
 
+        /*--------------------------------------------------------------------------------
+                                      server --> client               
+          -------------------------------------------------------------------------------*/
+
         //--------------------------------------------------------------------------------
         private stcRegister(data:any): void
         {
@@ -114,7 +126,22 @@
             }
             else
             {
-                Game.Log.L().ERROE(Game.ConstString.eFailedRegister);
+                Game.Log.L.ERROE(Game.ConstString.eFailedRegister);
+            }
+        }
+
+        //--------------------------------------------------------------------------------
+        private stcGetRole(data:any): void
+        {
+            if (data.correct == 0)
+            {
+                this.DATA.mDRole.mName = data.Name;
+                this.DATA.mDRole.mLv = data.Lv;
+                this.DATA.mDRole.mHead = data.Head;
+            }
+            else
+            {
+                Game.Log.L.ERROE("ERROR: " +　data.error);
             }
         }
 
@@ -136,7 +163,7 @@
                 }
                 else
                 {
-                    Game.Log.L().ERROE("未连接到服务器！");
+                    Game.Log.L.ERROE("未连接到服务器！");
                 }
             }
         }
@@ -153,33 +180,42 @@
         //--------------------------------------------------------------------------------
         public doOpen(e: egret.Event): void
         {
-            Game.Log.L().LOG("WebSocket connect success!");
+            Game.Log.L.LOG("WebSocket connect success!");
         }
 
         //--------------------------------------------------------------------------------
         public doMessage(e: egret.ProgressEvent): void
         {
-            var msg = this.mWebSocket.readUTF();
-            var data = JSON.parse(msg);
+            var buff = this.mWebSocket.readUTF();
+            var msg = JSON.parse(buff);
 
-            if (data)
+            if (msg)
             {
-                if (data["MWP"] && data["data"])
+                if (msg["MWP"] && msg["data"])
                 {
-                    this.resEvent(data["MWP"],data["data"]);
+                    var data = JSON.parse(msg["data"]);
+                    
+                    if (data)
+                    {
+                        this.resEvent(msg["MWP"], data);
+                    }
+                    else
+                    {
+                        Game.Log.L.ERROE(msg["MWP"] + " [[--JSON.parse(msg['data'])--]] error!")
+                    }
                 }
 
-                Game.Log.L().LOG("Client get message：" + data["MWP"]);
+                Game.Log.L.LOG("Client get message：" + msg["MWP"]);
                 return;
             }
 
-            Game.Log.L().ERROE("ERROR：" + msg);
+            Game.Log.L.ERROE("ERROR：" + buff);
         }
 
         //--------------------------------------------------------------------------------
         public doClose(e: egret.Event): void
         {
-            Game.Log.L().WARN("WebSocket connect close!");
+            Game.Log.L.WARN("WebSocket connect close!");
 
             if (this.mWebSocket)
             {
@@ -194,7 +230,7 @@
         //--------------------------------------------------------------------------------
         public doError(e: egret.Event): void
         {
-            Game.Log.L().ERROE("WebSocket connect error!");
+            Game.Log.L.ERROE("WebSocket connect error!");
         }
 
         //--------------------------------------------------------------------------------

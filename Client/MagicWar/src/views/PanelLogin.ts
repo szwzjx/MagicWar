@@ -2,7 +2,6 @@
 
     export class PanelLogin extends PanelLoginUI {
 
-
         public constructor() {
             super();
             this.name = "PanelLogin";
@@ -83,7 +82,7 @@
                 warn = (warn == "") ? "密码有非法字符！" : warn;
             }
 
-            Log.L().WARN(warn);
+            Log.L.WARN(warn);
             return (warn == "") ? true : false;
         }
 

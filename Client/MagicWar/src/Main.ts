@@ -140,13 +140,13 @@ class Main extends egret.DisplayObjectContainer {
             var ww = document.documentElement.clientWidth || document.body.clientWidth || 1280;
             var hh = document.documentElement.clientHeight || document.body.clientHeight || 720;
 
-            Game.Log.L().LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
-            Game.Log.L().LOG("STAGE_WIDTH: " + Game.Config.getInstance().STAGE_WIDTH);
-            Game.Log.L().LOG("STAGE_HEIGHT: " + Game.Config.getInstance().STAGE_HEIGHT);
-            Game.Log.L().LOG("clientWidth: " + document.documentElement.clientWidth);
-            Game.Log.L().LOG("clientHeight: " + document.documentElement.clientHeight);
-
-            Game.Log.L().visible = false;
+            Game.Log.L.LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
+            Game.Log.L.LOG("STAGE_WIDTH: " + Game.Config.getInstance().STAGE_WIDTH);
+            Game.Log.L.LOG("STAGE_HEIGHT: " + Game.Config.getInstance().STAGE_HEIGHT);
+            Game.Log.L.LOG("clientWidth: " + document.documentElement.clientWidth);
+            Game.Log.L.LOG("clientHeight: " + document.documentElement.clientHeight);
+            
+            Game.Log.L.visible = false;
 
             this.textLog = new egret.TextField();
             this.textLog.x = Game.Config.getInstance().STAGE_WIDTH - 68;
@@ -155,7 +155,7 @@ class Main extends egret.DisplayObjectContainer {
             this.textLog.touchEnabled = true;
             this.textLog.addEventListener(egret.TouchEvent.TOUCH_TAP, this.showLog, this);
 
-            this.addChild(Game.Log.L());
+            this.addChild(Game.Log.L);
             this.addChild(this.textLog);
         }
     }
@@ -163,7 +163,7 @@ class Main extends egret.DisplayObjectContainer {
     //--------------------------------------------------------------------------------
     private showLog(): void
     {
-        Game.Log.L().visible = !Game.Log.L().visible;
+        Game.Log.L.visible = !Game.Log.L.visible;
     }
 }
 

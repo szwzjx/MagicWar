@@ -522,6 +522,8 @@
     <TypeScriptCompile Include="libs\_references.ts" />
     <TypeScriptCompile Include="src\AssetAdapter.ts" />
     <TypeScriptCompile Include="src\config\Config.ts" />
+    <TypeScriptCompile Include="src\data\Data.ts" />
+    <TypeScriptCompile Include="src\data\views\DRole.ts" />
     <TypeScriptCompile Include="src\lang\ConstString_CN.ts" />
     <TypeScriptCompile Include="src\lang\ConstString.ts" />
     <TypeScriptCompile Include="src\LoadingUI.ts" />

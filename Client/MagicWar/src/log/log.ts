@@ -6,7 +6,7 @@
 
         private mTextLog: egret.TextField;
 
-        private static instance: Log;
+        private static _instance: Log;
 
         public constructor() {
             super();
@@ -88,14 +88,20 @@
         }
 
         //--------------------------------------------------------------------------------
-        public static L(): Log
+        public static set L(value: Log)
         {
-            if (this.instance == null) {
-                
-                this.instance = new Log();
+            this._instance = value;
+        }
+
+        //--------------------------------------------------------------------------------
+        public static get L(): Log
+        {
+            if (this._instance == null)
+            {
+                this._instance = new Log();
             }
 
-            return <Log><any>(this.instance);
+            return <Log><any>(this._instance);
         }
     }
 }
