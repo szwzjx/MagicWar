@@ -1,16 +1,17 @@
-﻿module Net {
-    export class NetCenter {
-
+﻿module Game {
+    export class NetCenter extends egret.EventDispatcher{
+        /**HTML5 WebSocket*/
         public mWebSocket: egret.WebSocket;
-
+        /**register event*/
         public NETEVENT: any[];
-
+        /**Game.Data.instance*/
         public DATA: any;
 
-        public static instance: NetCenter;
+        public static _instance: NetCenter;
 
         public constructor()
         {
+            super();
             this.NETEVENT = [];
             this.DATA = Game.Data.instance;
         }
@@ -48,7 +49,7 @@
                 return;
             }
         }
-
+        
         //--------------------------------------------------------------------------------
         private regEssential(): void
         {
@@ -138,6 +139,8 @@
                 this.DATA.mDRole.mName = data.Name;
                 this.DATA.mDRole.mLv = data.Lv;
                 this.DATA.mDRole.mHead = data.Head;
+
+                this.dispatchEvent(new NetEvent(NetEvent.EVENT_ROLE,[]));
             }
             else
             {
@@ -234,14 +237,19 @@
         }
 
         //--------------------------------------------------------------------------------
-        public static getInstance(): NetCenter
+        public static set instance(value: NetCenter) {
+            this._instance = value;
+        }
+
+        //--------------------------------------------------------------------------------
+        public static get instance(): NetCenter
         {
-            if (!this.instance)
+            if (!this._instance)
             {
-                this.instance = new NetCenter();
+                this._instance = new NetCenter();
             }
 
-            return <NetCenter><any>(this.instance);
+            return <NetCenter><any>(this._instance);
         }
     }
 }

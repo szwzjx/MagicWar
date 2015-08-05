@@ -39,14 +39,14 @@
 
                         if (this.checkLogin())
                         {
-                            Net.NetCenter.getInstance().ctsLogin(this.ti_name.text, this.ti_pwd.text);
+                             NetCenter.instance.ctsLogin(this.ti_name.text, this.ti_pwd.text);
                         }
 
                         break;
 
                     case "btn_register":
 
-                        Net.NetCenter.getInstance().ctsRegister("123", "123");
+                        NetCenter.instance.ctsRegister("123", "123");
                         break;
 
                     default:

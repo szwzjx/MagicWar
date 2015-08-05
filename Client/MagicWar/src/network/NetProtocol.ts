@@ -1,4 +1,4 @@
-﻿module Net {
+﻿module Game {
     export class NetProtocol {
 
         public static ctsRegister: number = 1001;
