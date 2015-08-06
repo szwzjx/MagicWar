@@ -5,13 +5,14 @@
         public constructor()
         {
             super();
+            this.name = "PanelRole";
         }
 
         //--------------------------------------------------------------------------------
         public childrenCreated(): void
         {
             this.CREATED = true;
-
+            this.update();
             NetCenter.instance.addEventListener(NetEvent.EVENT_ROLE, this.handleRole, this);
         }
 

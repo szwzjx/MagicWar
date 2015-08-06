@@ -8,9 +8,9 @@
         public mHead: string;
 
         public constructor() {
-            this.mName = "";
-            this.mLv = 0;
-            this.mHead = "";
+            this.mName = "异域女斯蒂";
+            this.mLv = 44;
+            this.mHead = "mw_role_girl_png";
         }
     }
 }

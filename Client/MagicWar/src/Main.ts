@@ -33,8 +33,6 @@ class Main extends egret.DisplayObjectContainer {
 
     private gameLayer: egret.DisplayObjectContainer;
 
-    private guiLayer: Game.GameUI;
-
     private textLog: egret.TextField;
 
     public constructor() {
@@ -75,7 +73,6 @@ class Main extends egret.DisplayObjectContainer {
             Game.Config.getInstance().MAGICWAR_IP = result["ip"];
             Game.Config.getInstance().MAGUCWAR_PORT = result["port"];
             Game.Config.getInstance().VERSION = result["version"];
-
             Game.ConstString.ensureLang(Game.Config.getInstance().LANGUAGE_TYPE);
         }
 
@@ -116,9 +113,7 @@ class Main extends egret.DisplayObjectContainer {
 
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
-
-        this.guiLayer = new Game.GameUI();
-        this.addChild(this.guiLayer);
+        this.addChild(Game.GameUI.instance);
 
         var bitmap:egret.Bitmap = new egret.Bitmap();
         bitmap.texture = RES.getRes("bgImage");
@@ -145,7 +140,6 @@ class Main extends egret.DisplayObjectContainer {
             Game.Log.L.LOG("STAGE_HEIGHT: " + Game.Config.getInstance().STAGE_HEIGHT);
             Game.Log.L.LOG("clientWidth: " + document.documentElement.clientWidth);
             Game.Log.L.LOG("clientHeight: " + document.documentElement.clientHeight);
-            
             Game.Log.L.visible = false;
 
             this.textLog = new egret.TextField();
@@ -154,7 +148,6 @@ class Main extends egret.DisplayObjectContainer {
             this.textLog.text = "LOG";
             this.textLog.touchEnabled = true;
             this.textLog.addEventListener(egret.TouchEvent.TOUCH_TAP, this.showLog, this);
-
             this.addChild(Game.Log.L);
             this.addChild(this.textLog);
         }
@@ -164,6 +157,15 @@ class Main extends egret.DisplayObjectContainer {
     private showLog(): void
     {
         Game.Log.L.visible = !Game.Log.L.visible;
+
+        if (Game.Log.L.visible)
+        {
+            Game.GameUI.instance.manage_panel("PanelRole","open");
+        }
+        else
+        {
+           
+        }
     }
 }
 
