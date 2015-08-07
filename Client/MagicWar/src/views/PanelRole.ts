@@ -32,8 +32,10 @@
         private updateNetData(): void
         {
             this.UIA_head.source = Data.instance.mDRole.mHead;
-            this.lable_name.text = Data.instance.mDRole.mName;
-            this.lable_lv.text = Data.instance.mDRole.mLv.toString();
+            this.label_name.text = Data.instance.mDRole.mName;
+            this.label_lv.text = "Lv." + Data.instance.mDRole.mLv.toString();
+            this.label_coin.text = Data.instance.mDRole.mCoin.toString();
+            this.label_diamond.text = Data.instance.mDRole.mDiamond.toString();
         }
     }
 }

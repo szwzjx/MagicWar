@@ -11,6 +11,16 @@
     ],
 	"resources":[
 	{
+		"name":"mw_coin_png",
+		"type":"image",
+		"url":"assets/panel/panelrole/mw_coin.png"
+	},		
+	{
+		"name":"mw_diamond_png",
+		"type":"image",
+		"url":"assets/panel/panelrole/mw_diamond.png"
+	},
+	{
 		"name":"mw_border_png",
 		"type":"image",
 		"url":"assets/com/mw_border.png"

@@ -330,6 +330,16 @@
 				"isFolder":false,
 				"key":"mw_border_png",
 				"name":"mw_border_png"
+			},
+			{
+				"isFolder":false,
+				"key":"mw_coin_png",
+				"name":"mw_coin_png"
+			},
+			{
+				"isFolder":false,
+				"key":"mw_diamond_png",
+				"name":"mw_diamond_png"
 			}]
 		}
 	},

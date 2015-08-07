@@ -4,9 +4,13 @@
 
         public UIA_head: egret.gui.UIAsset;
 
-        public lable_name: egret.gui.Label;
+        public label_name: egret.gui.Label;
 
-        public lable_lv: egret.gui.Label;
+        public label_lv: egret.gui.Label;
+
+        public label_coin: egret.gui.Label;
+
+        public label_diamond: egret.gui.Label;
 
         public constructor() {
             super();

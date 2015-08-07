@@ -5,6 +5,8 @@
 
         public PANEL_NAME: string[];
 
+        public runtimeClass: RuntimeClass;
+
         public static _instance: GameUI;
 
         public constructor()
