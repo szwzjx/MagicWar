@@ -5,8 +5,8 @@
         public constructor() {
             super();
             this.name = "PanelLogin";
-            this.width = Game.Config.getInstance().STAGE_WIDTH;
-            this.height = Game.Config.getInstance().STAGE_HEIGHT;
+            this.width = Game.Config.instance.STAGE_WIDTH;
+            this.height = Game.Config.instance.STAGE_HEIGHT;
         }
 
         //--------------------------------------------------------------------------------

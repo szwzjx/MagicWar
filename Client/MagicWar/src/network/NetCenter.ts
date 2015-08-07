@@ -31,7 +31,7 @@
                 {
                     this.mWebSocket = new egret.WebSocket();
                     this.mWebSocket.connected
-                    this.mWebSocket.connect(Game.Config.getInstance().MAGICWAR_IP, Game.Config.getInstance().MAGUCWAR_PORT);
+                    this.mWebSocket.connect(Game.Config.instance.MAGICWAR_IP, Game.Config.instance.MAGUCWAR_PORT);
                     this.mWebSocket.addEventListener(egret.Event.CONNECT, this.doOpen, this);
                     this.mWebSocket.addEventListener(egret.ProgressEvent.SOCKET_DATA, this.doMessage, this);
                     this.mWebSocket.addEventListener(egret.Event.CLOSE, this.doClose, this);

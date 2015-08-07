@@ -19,10 +19,9 @@
 
         public VERSION: string
 
-        private static instance: Config;
+        private static _instance: Config;
 
-        public constructor()
-        {
+        public constructor() {
             this.STAGE_WIDTH = 0;
 
             this.STAGE_HEIGHT = 0;
@@ -39,14 +38,18 @@
         }
 
         //--------------------------------------------------------------------------------
-        public static getInstance(): Config
-        {
-            if (this.instance == null)
-            {
-                this.instance = new Config();
+        public static get instance(): Config {
+            if (this._instance == null) {
+                this._instance = new Config();
             }
 
-            return <Config><any>(this.instance);
+            return <Config><any>(this._instance);
+        }
+
+        //--------------------------------------------------------------------------------
+        public static set instance(value:Config)
+        {
+            this._instance = value;
         }
     }
 }

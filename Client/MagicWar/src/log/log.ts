@@ -16,8 +16,8 @@
         //--------------------------------------------------------------------------------
         private init(): void
         {
-            var W: number = Config.getInstance().STAGE_WIDTH;
-            var H: number = Config.getInstance().STAGE_HEIGHT;
+            var W: number = Config.instance.STAGE_WIDTH;
+            var H: number = Config.instance.STAGE_HEIGHT;
 
             var bg: egret.Shape = new egret.Shape();
             bg.graphics.beginFill(0x000000, 0.7);

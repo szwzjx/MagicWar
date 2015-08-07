@@ -43,8 +43,8 @@ class Main extends egret.DisplayObjectContainer {
     //--------------------------------------------------------------------------------
     private onAddToStage(event: egret.Event) {
 
-        Game.Config.getInstance().STAGE_WIDTH = this.stage.stageWidth;
-        Game.Config.getInstance().STAGE_HEIGHT = this.stage.stageHeight;
+        Game.Config.instance.STAGE_WIDTH = this.stage.stageWidth;
+        Game.Config.instance.STAGE_HEIGHT = this.stage.stageHeight;
 
         egret.Injector.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
         egret.gui.Theme.load("resource/theme.thm");
@@ -68,12 +68,12 @@ class Main extends egret.DisplayObjectContainer {
 
         if (result)
         {
-            Game.Config.getInstance().LANGUAGE_TYPE = result["language"];
-            Game.Config.getInstance().DEBUG = result["debug"];
-            Game.Config.getInstance().MAGICWAR_IP = result["ip"];
-            Game.Config.getInstance().MAGUCWAR_PORT = result["port"];
-            Game.Config.getInstance().VERSION = result["version"];
-            Game.ConstString.ensureLang(Game.Config.getInstance().LANGUAGE_TYPE);
+            Game.Config.instance.LANGUAGE_TYPE = result["language"];
+            Game.Config.instance.DEBUG = result["debug"];
+            Game.Config.instance.MAGICWAR_IP = result["ip"];
+            Game.Config.instance.MAGUCWAR_PORT = result["port"];
+            Game.Config.instance.VERSION = result["version"];
+            Game.ConstString.ensureLang(Game.Config.instance.LANGUAGE_TYPE);
         }
 
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
@@ -124,27 +124,27 @@ class Main extends egret.DisplayObjectContainer {
         var version: egret.TextField = new egret.TextField();
         version.width = 200;
         version.size = 24;
-        version.x = (Game.Config.getInstance().STAGE_WIDTH - version.width) / 2;
-        version.y = Game.Config.getInstance().STAGE_HEIGHT - 25;
+        version.x = (Game.Config.instance.STAGE_WIDTH - version.width) / 2;
+        version.y = Game.Config.instance.STAGE_HEIGHT - 25;
         version.textAlign = egret.HorizontalAlign.CENTER;
-        version.text = "version: " + Game.Config.getInstance().VERSION;
+        version.text = "version: " + Game.Config.instance.VERSION;
         this.gameLayer.addChild(version);
 
-        if (Game.Config.getInstance().DEBUG)
+        if (Game.Config.instance.DEBUG)
         {
             var ww = document.documentElement.clientWidth || document.body.clientWidth || 1280;
             var hh = document.documentElement.clientHeight || document.body.clientHeight || 720;
 
-            Game.Log.L.LOG("MAGICWAR VERSION: " + Game.Config.getInstance().VERSION);
-            Game.Log.L.LOG("STAGE_WIDTH: " + Game.Config.getInstance().STAGE_WIDTH);
-            Game.Log.L.LOG("STAGE_HEIGHT: " + Game.Config.getInstance().STAGE_HEIGHT);
+            Game.Log.L.LOG("MAGICWAR VERSION: " + Game.Config.instance.VERSION);
+            Game.Log.L.LOG("STAGE_WIDTH: " + Game.Config.instance.STAGE_WIDTH);
+            Game.Log.L.LOG("STAGE_HEIGHT: " + Game.Config.instance.STAGE_HEIGHT);
             Game.Log.L.LOG("clientWidth: " + document.documentElement.clientWidth);
             Game.Log.L.LOG("clientHeight: " + document.documentElement.clientHeight);
             Game.Log.L.visible = false;
 
             this.textLog = new egret.TextField();
-            this.textLog.x = Game.Config.getInstance().STAGE_WIDTH - 68;
-            this.textLog.y = Game.Config.getInstance().STAGE_HEIGHT - 30;
+            this.textLog.x = Game.Config.instance.STAGE_WIDTH - 68;
+            this.textLog.y = Game.Config.instance.STAGE_HEIGHT - 30;
             this.textLog.text = "LOG";
             this.textLog.touchEnabled = true;
             this.textLog.addEventListener(egret.TouchEvent.TOUCH_TAP, this.showLog, this);
