@@ -11,6 +11,7 @@ class Event
 		echo "new Client: ",$client_id,"\n";
 	}	
 	
+	//--------------------------------------------------------------------------------
 	public static function onMessage($client_id,$message)
 	{
 		echo "new Message from ".$client_id," : ",$message,"\n";
@@ -25,6 +26,7 @@ class Event
 		
 		if(!$message_data)
 		{
+			Gateway::sendToClient($client_id,"\$message_data error!");
 			return;		
 		}
 
@@ -51,36 +53,37 @@ class Event
 				{
 					throw new \Exception("\$message_data['Name'] not set.client_ip:{$_SERVER['REMOTE_ADDR']} \$message:$message");
 				}
-	
-				echo "[MWP:1002]"."\$message_data['Name'] is ".$message_data['Name']."\n";
 
 				self::checkInfo($message_data['Name'],$message_data['Password'],1);
 
 				break;
+
+			//player information
+			case 1003:
+				
+				if(isset($_SESSION['uid']))
+				{
+					self::getRole($client_id,$_SESSION['uid']);
+				}
+				else
+				{
+					echo "[MWP:1003] ".$client_id." error! \$_SESSION['uid'] is not found!";
+				}
+				break;
+
 			default:
 				break;
 		}
-		if($message == 'cc')
-		{
-			$cc = Db::instance('mwdb')->select('coin')->from('account')->where("name = 'mall'")->single();
-			echo "mall coin: ",$cc,"\n";
-		}
-	
-		if($message == 'aa')
-		{
-			$name = "gold".$client_id.rand(100,300);
-			$sex = rand(1,3);
-			$coin = rand(111,555) *78 ;
-			$aa = Db::instance('mwdb')->query("INSERT INTO `account` (`id`,`name`,`sex`,`coin`) VALUES ('5','baby',3,23442)");
-			echo "add name=",$name," sex=",$sex," coin= ",$coin,"\n";
-		}
+
 	}
 
+	//--------------------------------------------------------------------------------
 	public static function onClose($client_id)
 	{
 		echo "Client: ".$client_id." is closed"."\n";
 	}
 	
+	//--------------------------------------------------------------------------------
 	public static function checkInfo($name,$pwd,$flag)
 	{
 		$ok = false;
@@ -121,7 +124,7 @@ class Event
 
 		if($ok)
 		{
-			$row = Db::instance('mwdb')->row("SELECT name,pwd FROM `account` WHERE name= '$name'");
+			$row = Db::instance('mwdb')->row("SELECT uid,name,pwd FROM `account` WHERE name= '$name'");
 			
 			if($row)
 			{	
@@ -133,7 +136,8 @@ class Event
 				{
 					if( $row['pwd'] == $pwd)
 					{
-						echo "Client: ".$name." login success!"."\n";						
+						echo "Client: ".$name." login success!"."\n";		
+						$_SESSION['uid'] = $row['uid']; 				
 					}
 					else
 					{
@@ -162,6 +166,24 @@ class Event
 				}
 			}
 		}
+	}
+
+	//--------------------------------------------------------------------------------
+	public static function getRole($client_id,$uid)
+	{
+		$row = Db::instance('mwdb')->row("SELECT uid,name,sex,head,coin,lv FROM `account` WHERE uid= '$uid'");
+		
+		if($row)
+		{
+			$data = Array('mwp'=>1003,'data'=>Array('errcode'=>0,'errormsg'=>'','name'=>$row['name'],'sex'=>$row['sex'],'head'=>$row['head'],'coin'=>$row['coin'],'lv'=>$row['lv']));
+		}		
+		else
+		{
+			$data = Array('mwp'=>1003,'data'=>Array('errcode'=>1,'errormsg'=>'the role is not found'));
+		}
+
+		$msg = json_encode($data);
+		Gateway::sendToClient($client_id,$msg);
 	}
 }
 
