@@ -4,5 +4,17 @@
 /Client/MagicWar/obj
 /Client/MagicWar/bin
 /Client/MagicWar/release
+/Client/MagicWar/build.bat
+/Client/MagicWar/build_engine.bat
+/Client/MagicWar/egret.cmd
+/Client/MagicWar/MagicWar.csproj
+/Client/MagicWar/MagicWar.csproj.user
+/Client/MagicWar/run.bat
+/Client/MagicWar/web.config
+/Client/MagicWar/web.Debug.config
+/Client/MagicWar/web.Release.config
+/Client/MagicWar/wingProperties.json
+/Client/MagicWar.v12.suo
+/Client/MagicWar.sln
 /Server/workerman.log
 /Server/Applications/MagicWar/web
