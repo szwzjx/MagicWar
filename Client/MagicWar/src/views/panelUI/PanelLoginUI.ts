@@ -10,6 +10,8 @@
 
         public ti_name: egret.gui.TextInput;
 
+        public label_version: egret.gui.Label;
+
         public constructor() {
             super();
             this.skinName = "skins.panel.panelLoginSkin";

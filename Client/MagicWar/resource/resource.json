@@ -1,15 +1,40 @@
 {
     "groups": [
         {
-            "keys": "bgImage,run_json,run_png",
+            "keys": "bg_png",
             "name":"preload"
         },
         {
-            "keys": "checkbox_select_disabled_png,checkbox_select_normal_png,checkbox_unselect_disabled_png,checkbox_unselect_normal_png,hslider_fill_png,hslider_thumb_png,hslider_track_png,button_disabled_png,button_down_png,button_normal_png,panel_back_png,progressbar_fill_png,progressbar_track_png,radiobutton_select_disabled_png,radiobutton_select_normal_png,radiobutton_unselect_disabled_png,radiobutton_unselect_normal_png,togglebutton_disabled_png,togglebutton_normal_png,togglebutton_selected_png,tree_back_png,tree_btndisabled_png,tree_btndisabledselect_png,tree_btndown_png,tree_btndownselect_png,tree_btnup_png,tree_btnupselect_png,vslider_fill_png,vslider_thumb_png,vslider_track_png,onoffbutton_off_label_png,onoffbutton_off_thumb_png,onoffbutton_off_track_png,onoffbutton_on_label_png,onoffbutton_on_thumb_png,onoffbutton_on_track_png,tree_icon_dir_png,tree_icon_file_png,panel_headeback_png,bgImage,app_list_item_cutlline_png,app_list_item_select_png,app_list_item_up_png,dropdownlist_arrow_down_png,dropdownlist_arrow_up_png,DropDownListButtonSkin_down_png,DropDownListButtonSkin_up_png,closebtn_down_png,closebtn_up_png,checkbox_select_over_png,checkbox_unselect_over_png,radiobutton_select_over_png,radiobutton_unselect_over_png",
+            "keys": "checkbox_select_disabled_png,checkbox_select_normal_png,checkbox_unselect_disabled_png,checkbox_unselect_normal_png,hslider_fill_png,hslider_thumb_png,hslider_track_png,button_disabled_png,button_down_png,button_normal_png,panel_back_png,progressbar_fill_png,progressbar_track_png,radiobutton_select_disabled_png,radiobutton_select_normal_png,radiobutton_unselect_disabled_png,radiobutton_unselect_normal_png,togglebutton_disabled_png,togglebutton_normal_png,togglebutton_selected_png,tree_back_png,tree_btndisabled_png,tree_btndisabledselect_png,tree_btndown_png,tree_btndownselect_png,tree_btnup_png,tree_btnupselect_png,vslider_fill_png,vslider_thumb_png,vslider_track_png,onoffbutton_off_label_png,onoffbutton_off_thumb_png,onoffbutton_off_track_png,onoffbutton_on_label_png,onoffbutton_on_thumb_png,onoffbutton_on_track_png,tree_icon_dir_png,tree_icon_file_png,panel_headeback_png,app_list_item_cutlline_png,app_list_item_select_png,app_list_item_up_png,dropdownlist_arrow_down_png,dropdownlist_arrow_up_png,DropDownListButtonSkin_down_png,DropDownListButtonSkin_up_png,closebtn_down_png,closebtn_up_png,checkbox_select_over_png,checkbox_unselect_over_png,radiobutton_select_over_png,radiobutton_unselect_over_png",
             "name": "egret_basic"
         }
     ],
 	"resources":[
+	{
+		"name":"main_main_bg_png",
+		"type":"image",
+		"url":"assets/panel/panelmeau/main_main_bg.png"
+	},
+	{
+		"name":"mw_main_bag_png",
+		"type":"image",
+		"url":"assets/panel/panelmeau/mw_main_bag.png"
+	},
+	{
+		"name":"mw_main_png",
+		"type":"image",
+		"url":"assets/panel/panelmeau/mw_main.png"
+	},
+	{
+		"name":"mw_main_eqpt_png",
+		"type":"image",
+		"url":"assets/panel/panelmeau/mw_main_eqpt.png"
+	},
+		{
+		"name":"mw_main_fight_png",
+		"type":"image",
+		"url":"assets/panel/panelmeau/mw_main_fight.png"
+	},
 	{
 		"name":"mw_coin_png",
 		"type":"image",
@@ -297,9 +322,24 @@
 		"url":"assets/simple/TitleWindow/closebtn_up.png"
 	},
 	{
-		"name":"bgImage",
+		"name":"bg_jpg",
+		"type":"image",
+		"url":"assets/bg.jpg"
+	},
+	{
+		"name":"bg_png",
 		"type":"image",
 		"url":"assets/bg.png"
+	},
+	{
+		"name":"bg2_png",
+		"type":"image",
+		"url":"assets/bg2.png"
+	},
+	{
+		"name":"bg3_png",
+		"type":"image",
+		"url":"assets/bg3.png"
 	},
 	{
 		"name":"app_list_item_cutlline_png",

@@ -28,26 +28,14 @@
          * @ action: "open" or "close"
          */
         //--------------------------------------------------------------------------------
-        public manage_panel(name:string,action:string): void
+        public manage_panel(name:string,action:string,position:string = ""): void
         {
             var self = this;
             var panel = self.PANEL_ALL[name];
             
             if (!panel)
             {
-                var classname = "Game." + name;
-                var panelClass = egret.getDefinitionByName(classname);
-
-                if (panelClass)
-                {
-                    panel = new panelClass;
-                    self.PANEL_ALL[name] = panel;
-                }
-                else
-                {
-                    Log.L.ERROE(name + " is not found!");
-                    return;
-                }
+                panel = self.createPanel(name);
             }
 
             if (panel)
@@ -79,10 +67,28 @@
         }
 
         //--------------------------------------------------------------------------------
-        public static get instance(): GameUI
+        public createPanel(name:string): any 
         {
-            if (this._instance == null)
+            var panel = null;
+            var classname = "Game." + name;
+            var panelClass = egret.getDefinitionByName(classname);
+
+            if (panelClass)
             {
+                panel = new panelClass;
+                this.PANEL_ALL[name] = panel;
+            }
+            else
+            {
+                Log.L.ERROE(name + " is not found!");
+            }
+
+            return panel;
+        }
+
+        //--------------------------------------------------------------------------------
+        public static get instance(): GameUI {
+            if (this._instance == null) {
                 this._instance = new GameUI();
             }
 

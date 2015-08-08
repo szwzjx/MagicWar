@@ -15,4 +15,5 @@
 		<e:Label text="账户" x="6" y="33"/>
 		<e:Label text="密码" y="112" x="6"/>
 	</e:Group>
+	<e:Label id="label_version" text="version:0.0.1" horizontalCenter="0" bottom="1" size="24" name="label_version"/>
 </e:Skin>

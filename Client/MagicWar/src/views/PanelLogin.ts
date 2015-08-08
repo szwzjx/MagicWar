@@ -24,6 +24,11 @@
             {
 
             }
+
+            if (instance == this.label_version)
+            {
+                this.label_version.text = "version:" + Config.instance.VERSION;
+            }
         }
 
         //--------------------------------------------------------------------------------

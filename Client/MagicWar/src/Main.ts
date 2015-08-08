@@ -116,19 +116,10 @@ class Main extends egret.DisplayObjectContainer {
         this.addChild(Game.GameUI.instance);
 
         var bitmap:egret.Bitmap = new egret.Bitmap();
-        bitmap.texture = RES.getRes("bgImage");
+        bitmap.texture = RES.getRes("bg_png");
         bitmap.width = this.stage.stageWidth;
         bitmap.height = this.stage.stageHeight;
         this.gameLayer.addChild(bitmap);
-
-        var version: egret.TextField = new egret.TextField();
-        version.width = 200;
-        version.size = 24;
-        version.x = (Game.Config.instance.STAGE_WIDTH - version.width) / 2;
-        version.y = Game.Config.instance.STAGE_HEIGHT - 25;
-        version.textAlign = egret.HorizontalAlign.CENTER;
-        version.text = "version: " + Game.Config.instance.VERSION;
-        this.gameLayer.addChild(version);
 
         if (Game.Config.instance.DEBUG)
         {
@@ -160,7 +151,8 @@ class Main extends egret.DisplayObjectContainer {
 
         if (Game.Log.L.visible)
         {
-            Game.GameUI.instance.manage_panel("PanelRole","open");
+            Game.MainUI.instance.manageContent(true);
+            Game.GameUI.instance.manage_panel("PanelLogin","close");
         }
         else
         {

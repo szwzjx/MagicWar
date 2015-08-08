@@ -5,6 +5,8 @@
 
         public panelRole: PanelRole;
 
+        public panelMeau: PanelMeau;
+
         public constructor() {
 
         }

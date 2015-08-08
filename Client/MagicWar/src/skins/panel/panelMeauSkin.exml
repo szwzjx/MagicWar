@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin width="720" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing" height="122">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset source="main_main_bg_png" width="725" x="0" y="0" height="122"/>
+	<e:UIAsset id="UIA_meau" source="mw_main_png" name="UIA_meau" left="24" bottom="4"/>
+	<e:UIAsset id="UIA_fight" source="mw_main_fight_png" name="UIA_fight" horizontalCenter="-93" bottom="4"/>
+	<e:UIAsset id="UIA_equip" source="mw_main_eqpt_png" name="UIA_equip" horizontalCenter="94" bottom="4"/>
+	<e:UIAsset id="UIA_bag" source="mw_main_bag_png" name="UIA_bag" right="23" bottom="4"/>
+</e:Skin>
