@@ -5,7 +5,9 @@
 
         public static ctsLogin: number = 1002;
 
-        public static ctsGetRole: number = 1003;
+        public static ctsCreateRole: number = 1003;
+
+        public static ctsGetRole: number = 1004;
 
         public constructor() {
 

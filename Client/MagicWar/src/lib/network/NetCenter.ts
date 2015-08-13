@@ -93,18 +93,8 @@
         }
 
         //--------------------------------------------------------------------------------
-        public ctsGetRole(name: string): void
+        public ctsLogin(name: string, password: string): void
         {
-            var msg = {
-                MWP: NetProtocol.ctsGetRole,
-                Name: name,
-            };
-
-            this.send(msg);
-        }
-
-        //--------------------------------------------------------------------------------
-        public ctsLogin(name: string, password: string): void {
             var msg = {
                 MWP: NetProtocol.ctsLogin,
                 Name: name,
@@ -113,6 +103,29 @@
 
             this.send(msg);
         }
+
+        //--------------------------------------------------------------------------------
+        public ctsCreateRole(rolename: string,gender:number): void
+        {
+            var msg = {
+                MWP: NetProtocol.ctsCreateRole,
+                RoleName: rolename,
+                Gender: gender
+            };
+
+            this.send(msg);
+        }
+
+        //--------------------------------------------------------------------------------
+        public ctsGetRole(): void
+        {
+            var msg = {
+                MWP: NetProtocol.ctsGetRole,
+            };
+
+            this.send(msg);
+        }
+
 
         /*--------------------------------------------------------------------------------
                                       server --> client               

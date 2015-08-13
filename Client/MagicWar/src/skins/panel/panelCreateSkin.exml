@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin width="720" height="1280" xmlns:e="http://ns.egret-labs.org/egret" xmlns:w="http://ns.egret-labs.org/wing">
+	<w:HostComponent name="egret.gui.SkinnableComponent"/>
+	<w:Declarations/>
+	<e:states>
+		<e:State name="normal"/>
+		<e:State name="disabled"/>
+	</e:states>
+	<e:UIAsset source="bg3_png" x="0" y="0"/>
+	<e:Label text="昵称" x="194" y="770"/>
+	<e:TextInput id="ti_name" x="266" y="766" text="馨儿" name="ti_name"/>
+	<e:Button id="btn_rand" label="随机" x="486" y="756" name="btn_rand"/>
+	<e:Button id="btn_create" label="创建角色" horizontalCenter="0" verticalCenter="352" name="btn_create"/>
+	<e:TextArea text="古老文明的觉醒，一场惊心动魄的血雨腥风，悄然而来~" width="280" height="142" horizontalCenter="0" verticalCenter="0"/>
+	<e:Group height="100" width="720" x="0" y="384">
+		<e:UIAsset source="mw_role_girl_png" x="132" y="4"/>
+		<e:UIAsset source="mw_role_boy_png" x="286" y="4"/>
+		<e:layout>
+			<e:HorizontalLayout horizontalAlign="center" gap="50"/>
+		</e:layout>
+	</e:Group>
+</e:Skin>
