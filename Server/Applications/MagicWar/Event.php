@@ -4,11 +4,15 @@ use \GatewayWorker\Lib\GateWay;
 use \GatewayWorker\Lib\Store;
 use \GatewayWorker\Lib\Db;
 
+require_once __DIR__.'/Server/Const.php';
+
 class Event
 {
+	public static $server;
+	
 	public static function onConnect($client_id)
 	{
-		echo "new Client: ",$client_id,"\n";
+		echo "New Client: ",$client_id,"\n";
 	}	
 	
 	//--------------------------------------------------------------------------------
@@ -33,14 +37,13 @@ class Event
 		switch ($message_data["MWP"])
 		{
 			//register
-			case 1001:
+			case  CONST_MESSAGE_REGISTER:
 
 				if(!isset($message_data['Name']))
 				{
 					throw new \Exception("\$message_data['Name'] not set.client_ip:{$_SERVER['REMOTE_ADDR']} \$message:$message");
 				}
 	
-				echo "[MWP:1001]"."\$message_data['Name'] is ".$message_data['Name']."\n";
 
 				self::do_login_or_register($client_id,$message_data['Name'],$message_data['Password'],0);
 
@@ -147,7 +150,6 @@ class Event
 				{
 					if( $row['password'] == $pwd)
 					{
-						echo "Client: ".$name." login success!"."\n";		
 						$_SESSION['uid'] = $row['uid']; 	
 						$data = Array('mwp' => 1001,'data' => Array('errcode' => 0,'errormsg' => ''));
 					}
@@ -166,7 +168,6 @@ class Event
 					
 					if($insert)
 					{
-						echo "Client: ".$name." register success!"."\n";
 						$_SESSION['uid'] = $row['uid']; 
 						$data = Array('mwp' => 1002,'data' => Array('errcode' => 0,'errormsg' => ''));
 					}
