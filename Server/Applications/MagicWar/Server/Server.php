@@ -8,14 +8,17 @@ use \Workerman\Worker;
 
 class Server
 {
+	public $hall;
+
 	public function __construct()
 	{
-
+		$this->init();
 	}
 
 	public function init()
 	{
-		echo "This is a server!";
+		echo "MagicWar server start ... "."\n";
+		$this->hall = new Hall();
 	}
 
 }

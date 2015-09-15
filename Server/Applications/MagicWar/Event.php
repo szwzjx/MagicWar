@@ -3,6 +3,7 @@
 use \GatewayWorker\Lib\GateWay;
 use \GatewayWorker\Lib\Store;
 use \GatewayWorker\Lib\Db;
+use \Server\Entity\Player;
 
 require_once __DIR__.'/Server/Const.php';
 
@@ -18,8 +19,6 @@ class Event
 	//--------------------------------------------------------------------------------
 	public static function onMessage($client_id,$message)
 	{
-		echo "new Message from ".$client_id," : ",$message,"\n";
-		
 		if($message == "Hello! This is a test!")
 		{
 			Gateway::sendToClient($client_id,"Haha,I know this test!");
@@ -92,7 +91,7 @@ class Event
 	//--------------------------------------------------------------------------------
 	public static function onClose($client_id)
 	{
-		echo "Client: ".$client_id." is closed"."\n";
+		echo "Client: ".$client_id." is closed ".$_SESSION['uid']."\n";
 	}
 	
 	//--------------------------------------------------------------------------------
@@ -152,6 +151,8 @@ class Event
 					{
 						$_SESSION['uid'] = $row['uid']; 	
 						$data = Array('mwp' => 1001,'data' => Array('errcode' => 0,'errormsg' => ''));
+						$player = new Player(self::$server,$_SESSION['uid']);
+						self::$server->hall->addPlayer($player);
 					}
 					else
 					{
@@ -170,6 +171,8 @@ class Event
 					{
 						$_SESSION['uid'] = $row['uid']; 
 						$data = Array('mwp' => 1002,'data' => Array('errcode' => 0,'errormsg' => ''));
+						$player = new Player(self::$server,$_SESSION['uid']);
+						self::$server->hall->addPlayer($player);
 					}
 					else
 					{
