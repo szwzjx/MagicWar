@@ -89,6 +89,7 @@ class Event
 	{
 		$ok = false;
 		$data = Array();
+		$login_in = false;
 
 		if(strlen($name) > 0 && strlen($name) <= 11)
 		{
@@ -133,21 +134,23 @@ class Event
 				if($flag == 0)
 				{
 					echo "Client: ".$name." already exist! Register failed!"."\n";
-					$data = Array('mwp' => 1002,'data' => Array('errcode' => 1,'errormsg' => 'Register failed!'));
+					$data = Array('mwp' => CONST_MESSAGE_REGISTER,'data' => Array('errcode' => 1,'errormsg' => 'Register failed!'));
 				}
 				else
 				{
 					if( $row['password'] == $pwd)
 					{
 						$_SESSION['uid'] = $row['uid']; 	
-						$data = Array('mwp' => 1001,'data' => Array('errcode' => 0,'errormsg' => ''));
+						Gateway::bindUid($client_id,$row['uid']);
+						$data = Array('mwp' => CONST_MESSAGE_LOGIN,'data' => Array('errcode' => 0,'errormsg' => ''));
 						$player = new Player(self::$server,$_SESSION['uid']);
 						self::$server->hall->addPlayer($player);
+						$login_in = true;
 					}
 					else
 					{
 						echo "Client: ".$name." Password is not correct!login failed!"."\n";	
-						$data = Array('mwp' => 1001,'data' => Array('errcode' => 1,'errormsg' => 'Password is not correct!Login failed!'));
+						$data = Array('mwp' => CONST_MESSAGE_LOGIN,'data' => Array('errcode' => 1,'errormsg' => 'Password is not correct!Login failed!'));
 					}
 				}
 			}
@@ -160,31 +163,37 @@ class Event
 					if($insert)
 					{
 						$_SESSION['uid'] = $row['uid']; 
-						$data = Array('mwp' => 1002,'data' => Array('errcode' => 0,'errormsg' => ''));
+						Gateway::bindUid($client_id,$row['uid']);
+						$data = Array('mwp' => CONST_MESSAGE_REGISTER,'data' => Array('errcode' => 0,'errormsg' => ''));
 						$player = new Player(self::$server,$_SESSION['uid']);
 						self::$server->hall->addPlayer($player);
 					}
 					else
 					{
 						echo "Client: ".$name." register failed!"."\n";	
-						$data = Array('mwp' => 1002,'data' => Array('errcode' => 1,'errormsg' => 'Register failed!'));						
+						$data = Array('mwp' => CONST_MESSAGE_REGISTER,'data' => Array('errcode' => 1,'errormsg' => 'Register failed!'));						
 					}
 				}
 				else
 				{
 					echo "Client: ".$name." does not exist! login failed"."\n";
-					$data = Array('mwp' => 1001,'data' => Array('errcode' => 1,'errormsg' => 'Login failed!'));
+					$data = Array('mwp' => CONST_MESSAGE_LOGIN,'data' => Array('errcode' => 1,'errormsg' => 'Login failed!'));
 				}
 			}
 		}
 		
 		self::send_to_client($client_id,$data);
+
+		if($login_in)
+		{
+			self::get_role($client_id,$_SESSION['uid']);
+		}
 	}
 
 	//--------------------------------------------------------------------------------
 	public static function create_role($client_id,$rolename,$gender)
 	{
-		$data = Array('mwp' => 1003,'data' => Array('errcode' => 1,'errormsg' => 'create role failed'));
+		$data = Array('mwp' => CONST_MESSAGE_CREATE_ROLE,'data' => Array('errcode' => 1,'errormsg' => 'create role failed'));
 
 		if($_SESSION['uid'] > 0)
 		{
@@ -201,7 +210,7 @@ class Event
 
 				if($insert == 0)
 				{
-					$data = Array('mwp' => 1003,'data' => Array('errcode' => 0,'errormsg' => ''));
+					$data = Array('mwp' => CONST_MESSAGE_CREATE_ROLE,'data' => Array('errcode' => 0,'errormsg' => ''));
 				}
 			}
 		}
@@ -218,11 +227,11 @@ class Event
 	public static function get_role($client_id,$uid)
 	{
 		$row = Db::instance('mwdb')->row("SELECT playername,lv,exp,coin,gender,headicon FROM `player` WHERE accountid= $uid");
-		$data = Array('mwp'=>1004,'data'=>Array('errcode'=>1,'errormsg'=>'the role is not found'));
+		$data = Array('mwp'=>CONST_MESSAGE_GET_ROLE,'data'=>Array('errcode'=>1,'errormsg'=>'the role is not found'));
 
 		if($row)
 		{
-			$data = Array('mwp' => 1004,'data'=>Array('errcode'=> 0,'errormsg' => '','Playername' => $row['playername'],'Lv' => $row['lv'],'Exp' => $row['exp'],'Coin' => $row['coin'],'Gender' => $row['gender'],'Headicon' => $row['headicon']));
+			$data = Array('mwp' => CONST_MESSAGE_GET_ROLE,'data'=>Array('errcode'=> 0,'errormsg' => '','Playername' => $row['playername'],'Lv' => $row['lv'],'Exp' => $row['exp'],'Coin' => $row['coin'],'Gender' => $row['gender'],'Headicon' => $row['headicon']));
 		}
 
 		self::send_to_client($client_id,$data);
