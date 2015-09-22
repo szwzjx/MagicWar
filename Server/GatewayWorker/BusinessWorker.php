@@ -92,6 +92,10 @@ class BusinessWorker extends Worker
      */
     protected function onWorkerStart()
     {
+        if(!class_exists('\Protocols\GatewayProtocol'))
+        {
+            class_alias('\GatewayWorker\Protocols\GatewayProtocol', 'Protocols\GatewayProtocol');
+        }
         Timer::add(1, array($this, 'checkGatewayConnections'));
         $this->checkGatewayConnections();
         \GatewayWorker\Lib\Gateway::setBusinessWorker($this);
@@ -183,11 +187,6 @@ class BusinessWorker extends Worker
      */
     public function checkGatewayConnections()
     {
-        if(class_exists('\Protocols\GatewayProtocol/'))
-        {
-            class_alias('\GatewayWorker\Protocols\GatewayProtocol', 'Protocols\GatewayProtocol');
-        }
-        
         $key = 'GLOBAL_GATEWAY_ADDRESS';
         $addresses_list = Store::instance('gateway')->get($key);
         if(empty($addresses_list))
@@ -234,7 +233,10 @@ class BusinessWorker extends Worker
      */
     public function onError($connection, $error_no, $error_msg)
     {
-         $this->tryToDeleteGatewayAddress($connection->remoteAddress, $error_msg);
+         if($error_no === WORKERMAN_CONNECT_FAIL)
+         {
+             $this->tryToDeleteGatewayAddress($connection->remoteAddress, $error_msg);
+         }
     }
     
     /**

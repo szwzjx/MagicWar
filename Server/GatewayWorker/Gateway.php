@@ -32,6 +32,13 @@ use \GatewayWorker\Lib\Store;
  */
 class Gateway extends Worker
 {
+    
+    /**
+     * 版本
+     * @var string
+     */
+    const VERSION = '1.0.1';
+    
     /**
      * 本机ip
      * @var 单机部署默认127.0.0.1，如果是分布式部署，需要设置成本机ip
@@ -79,6 +86,11 @@ class Gateway extends Worker
      * @var array
      */
     protected $_clientConnections = array();
+    
+    /**
+     * uid 到client_id的映射，一对多关系
+     */
+    protected $_uidConnections = array();
     
     /**
      * 保存所有worker的内部连接的connection对象
@@ -143,7 +155,7 @@ class Gateway extends Worker
     {
         parent::__construct($socket_name, $context_option);
         
-        $this->router = array("\\GatewayWorker\\Gateway", 'routerRand');
+        $this->router = array("\\GatewayWorker\\Gateway", 'routerBind');
         
         $backrace = debug_backtrace();
         $this->_appInitPath = dirname($backrace[0]['file']);
@@ -282,6 +294,23 @@ class Gateway extends Worker
     }
     
     /**
+     * client_id与worker绑定
+     * @param array $worker_connections
+     * @param TcpConnection $client_connection
+     * @param int $cmd
+     * @param mixed $buffer
+     * @return TcpConnection
+     */
+    public static function routerBind($worker_connections, $client_connection, $cmd, $buffer)
+    {
+            if(!isset($client_connection->businessworker))
+            {
+                $client_connection->businessworker = $worker_connections[array_rand($worker_connections)];
+            }
+            return $client_connection->businessworker;
+    }
+    
+    /**
      * 保存客户端连接的gateway通讯地址
      * @param int $global_client_id
      * @param string $address
@@ -326,6 +355,19 @@ class Gateway extends Worker
         // 清理连接的数据
         $this->delClientAddress($connection->globalClientId);
         unset($this->_clientConnections[$connection->globalClientId]);
+        // 清理uid数据
+        if(!empty($connection->uids))
+        {
+            foreach($connection->uids as $uid)
+            {
+                unset($this->_uidConnections[$uid][$connection->globalClientId]);
+                if(empty($this->_uidConnections[$uid]))
+                {
+                    unset($this->_uidConnections[$uid]);
+                }
+            }
+        }
+        // 触发onClose
         if($this->_onClose)
         {
             call_user_func($this->_onClose, $connection);
@@ -382,10 +424,11 @@ class Gateway extends Worker
         // 如果有设置心跳，则定时执行
         if($this->pingInterval > 0)
         {
-            Timer::add($this->pingInterval, array($this, 'ping'));
+            $timer_interval = $this->pingNotResponseLimit > 0 ? $this->pingInterval/2 : $this->pingInterval;
+            Timer::add($timer_interval, array($this, 'ping'));
         }
     
-        if(class_exists('\Protocols\GatewayProtocol/'))
+        if(!class_exists('\Protocols\GatewayProtocol'))
         {
             class_alias('\GatewayWorker\Protocols\GatewayProtocol', 'Protocols\GatewayProtocol');
         }
@@ -498,6 +541,41 @@ class Gateway extends Worker
             case GatewayProtocol::CMD_IS_ONLINE:
                 $connection->send((int)isset($this->_clientConnections[$data['client_id']]));
                 break;
+                // 将client_id与uid绑定
+            case GatewayProtocol::CMD_BIND_UID:
+                $uid = $data['ext_data'];
+                if(empty($uid))
+                {
+                    echo "uid empty" . var_export($uid, true);
+                    return;
+                }
+                $client_id = $data['client_id'];
+                if(!isset($this->_clientConnections[$client_id]))
+                {
+                    return;
+                }
+                $client_connection = $this->_clientConnections[$client_id];
+                if(!isset($client_connection->uids))
+                {
+                    $client_connection->uids = array();
+                }
+                $client_connection->uids[$uid] = $uid;
+                $this->_uidConnections[$uid][$client_id] = $client_connection;
+                break;
+                // 发送数据给uid
+            case GatewayProtocol::CMD_SEND_TO_UID:
+                $uid_array =json_decode($data['ext_data'],true);
+                foreach($uid_array as $uid)
+                {
+                	if(!empty($this->_uidConnections[$uid]))
+                	{
+                		foreach($this->_uidConnections[$uid] as $connection)
+                		{
+                			$connection->send($data['body']);
+                		}
+                	}
+                }
+                break;
             default :
                 $err_msg = "gateway inner pack err cmd=$cmd";
                 throw new \Exception($err_msg);
@@ -606,18 +684,20 @@ class Gateway extends Worker
         foreach($this->_clientConnections as $connection)
         {
             // 上次发送的心跳还没有回复次数大于限定值就断开
-            if($this->pingNotResponseLimit > 0 && $connection->pingNotResponseCount >= $this->pingNotResponseLimit)
+            if($this->pingNotResponseLimit > 0 && $connection->pingNotResponseCount >= $this->pingNotResponseLimit*2)
             {
                 $connection->destroy();
                 continue;
             }
             // $connection->pingNotResponseCount为-1说明最近客户端有发来消息，则不给客户端发送心跳
-            if($connection->pingNotResponseCount++ >= 0)
+            $connection->pingNotResponseCount++;
+            if($this->pingData)
             {
-                if($this->pingData)
+                if($connection->pingNotResponseCount === 0 || ($this->pingNotResponseLimit > 0 && $connection->pingNotResponseCount%2 === 0))
                 {
-                    $connection->send($this->pingData);
+                    continue;
                 }
+                $connection->send($this->pingData);
             }
         }
     }
