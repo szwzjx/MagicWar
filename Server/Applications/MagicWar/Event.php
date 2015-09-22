@@ -19,11 +19,6 @@ class Event
 	//--------------------------------------------------------------------------------
 	public static function onMessage($client_id,$message)
 	{
-		if($message == "Hello! This is a test!")
-		{
-			Gateway::sendToClient($client_id,"Haha,I know this test!");
-			return;
-		}
 		
 		$message_data = json_decode($message,true);
 		
@@ -35,7 +30,6 @@ class Event
 
 		switch ($message_data["MWP"])
 		{
-			//register
 			case  CONST_MESSAGE_REGISTER:
 
 				if(!isset($message_data['Name']))
@@ -45,11 +39,9 @@ class Event
 	
 
 				self::do_login_or_register($client_id,$message_data['Name'],$message_data['Password'],0);
-
 				break;
 				
-			//login
-			case 1002:
+			case CONST_MESSAGE_LOGIN:
 
 				if(!isset($message_data['Name']))
 				{
@@ -57,10 +49,9 @@ class Event
 				}
 
 				self::do_login_or_register($client_id,$message_data['Name'],$message_data['Password'],1);
-
 				break;
-			//create role
-			case 1003:
+
+			case CONST_MESSAGE_CREATE_ROLE:
 					
 				if(isset($message_data['RoleName']) && isset($message_data['Gender']))
 				{
@@ -69,8 +60,7 @@ class Event
 
 				break;
 
-			//role information
-			case 1004:
+			case CONST_MESSAGE_GET_ROLE:
 				
 				if(isset($_SESSION['uid']))
 				{

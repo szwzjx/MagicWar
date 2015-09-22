@@ -1,4 +1,6 @@
 <?php
 
 $test = 12344555;
+define('CONST_MESSAGE_REGISTER',1001);
 define('TTTTT',$test);
+CONST_MESSAGE_GET_ROLE'
