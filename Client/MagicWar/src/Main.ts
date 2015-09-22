@@ -45,13 +45,10 @@ class Main extends egret.DisplayObjectContainer {
 
         Game.Config.instance.STAGE_WIDTH = this.stage.stageWidth;
         Game.Config.instance.STAGE_HEIGHT = this.stage.stageHeight;
-
         egret.Injector.mapClass("egret.gui.IAssetAdapter", AssetAdapter);
         egret.gui.Theme.load("resource/theme.thm");
-
         this.loadingView = new LoadingUI();
-        this.stage.addChild(this.loadingView);
-
+        //this.stage.addChild(this.loadingView);
         RES.addEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         RES.loadConfig("resource/resource.json", "resource/");
     }
@@ -83,9 +80,11 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     //--------------------------------------------------------------------------------
-    private onResourceLoadComplete(event:RES.ResourceEvent):void {
-        if (event.groupName == "preload") {
-            this.stage.removeChild(this.loadingView);
+    private onResourceLoadComplete(event: RES.ResourceEvent): void
+    {
+        if (event.groupName == "preload")
+        {
+            //this.stage.removeChild(this.loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
@@ -94,14 +93,17 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     //--------------------------------------------------------------------------------
-    private onResourceLoadError(event:RES.ResourceEvent):void {
+    private onResourceLoadError(event: RES.ResourceEvent): void
+    {
         console.warn("Group:" + event.groupName + " has failed to load");
         this.onResourceLoadComplete(event);
     }
 
     //--------------------------------------------------------------------------------
-    private onResourceProgress(event:RES.ResourceEvent):void {
-        if (event.groupName == "preload") {
+    private onResourceProgress(event: RES.ResourceEvent): void
+    {
+        if (event.groupName == "preload")
+        {
             this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
@@ -110,11 +112,9 @@ class Main extends egret.DisplayObjectContainer {
     private createScene(): void
     {
         //egret.Profiler.getInstance().run();
-
         this.gameLayer = new egret.DisplayObjectContainer();
         this.addChild(this.gameLayer);
         this.addChild(Game.GameUI.instance);
-
         var bitmap:egret.Bitmap = new egret.Bitmap();
         bitmap.texture = RES.getRes("bg_png");
         bitmap.width = this.stage.stageWidth;
@@ -151,8 +151,8 @@ class Main extends egret.DisplayObjectContainer {
 
         if (Game.Log.L.visible)
         {
-            Game.MainUI.instance.manageContent(true);
-            Game.GameUI.instance.manage_panel("PanelLogin","close");
+            //Game.MainUI.instance.manageContent(true);
+           // Game.GameUI.instance.manage_panel("PanelLogin","close");
         }
         else
         {
