@@ -2,21 +2,22 @@
 
 namespace Server\Pool;
 
-class PoolRoom
+class Pool
 {
-	public static $pool;
+	public static $pool = array();
 
-	public static $container;
+	public static $container = array();
 
 	public function __construct()
 	{
 	}
 
-	public static createRoom($classFactory)
+	public static createObject($classFactory)
 	{
 		$key = $classFactory::$key;
-			
-		if(empty($pool))
+		$result;
+
+		if()
 		{
 			$pool = array();	
 		}
@@ -26,7 +27,7 @@ class PoolRoom
 
 	}
 
-	public static destoryRoom()
+	public static destoryObject()
 	{
 
 	}
